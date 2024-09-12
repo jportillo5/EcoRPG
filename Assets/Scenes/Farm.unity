@@ -177,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7271049020162625856, guid: 9cc2325c627d12d459288bf29692436b, type: 3}
       propertyPath: sceneToLoad
-      value: PracticeScene
+      value: Woods
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
