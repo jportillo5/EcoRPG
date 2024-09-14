@@ -5,149 +5,201 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 using UnityEditor.Animations;
+using UnityEngine.InputSystem;
+using UnityEditor.Callbacks;
+using UnityEngine.Android;
 
 public class PlayerController : MonoBehaviour
 {
     //Components Connected to this game object
     SpriteRenderer mySpriteRenderer;
     Animator myAnim;
+    Vector2 movementInput;
+    Rigidbody2D myBod;
+    List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+
+    //Components related to other game objects probably
     
     //Private properties
-    private string directionFacing;
     private float[] lastInput;
-    private Boolean inMotion;
-    
-    //Public Properties
-    public Sprite leftIdle;
-    public Sprite rightIdle;
-    public Sprite upIdle;
-    public Sprite downIdle;
-    
+    private string directionFacing;
+
+    //public properties
+    public float moveSpeed;
+    public ContactFilter2D movementFilter;
+    public float collisionOffset = 0.05f;
+
     // Start is called before the first frame update
     void Start()
     {
         myAnim = GetComponent<Animator>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
-        inMotion = false;
-        directionFacing = "down";
-        mySpriteRenderer.sprite = downIdle;
         lastInput = new float[] {0, 0}; //no input
+        myBod = GetComponent<Rigidbody2D>();
+        directionFacing = "down";
     }
 
     // Update is called once per frame
+    /*
     void Update()
     {
         //left -1h, right +1h; up +1v, down -1v
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        float h = movementInput[0];
+        float v = movementInput[1];
 
-        //If going from idle to in motion, prioritize vertical over horizontal inputs if both are made at the same time.
-        //If already in motion, change in direction takes priority
-        
-        //if in motion, finish movement to next tile before switching directions
+        if(h == 0 && v == 0) {
+            myAnim.SetBool("Moving", false);
+            lastInput[0] = 0;
+            lastInput[1] = 0;
+        } else { //move
+            determineDirectionOfMovement(h, v);
 
-        //moving one tile should take 20 frames with current animation speed, can be adjusted
+        }
+    }
+    */
 
-        //walking uses the animator's "Moving" boolean parameter.
-        //The direction the player walks in corresponds to the "Direction" integer parameter
-        //0 for up, 1 for left, 2 for down, 3 for right
-        if(inMotion) {
-            //wait for motion to next tile to finish
-        } else { //!inMotion
-            if(h == 0 && v == 0) {
-                myAnim.SetBool("Moving", false);
-                lastInput[0] = 0;
-                lastInput[1] = 0;
-                //updateIdleSprite();
-                //don't apply motion
-            } else { //continue moving, determine direction
-                string direction = determineDirectionOfMovement(h, v);
-                updateDirectionFacing(direction);
-                updateIdleSprite();
-
-                inMotion = true;
+    private void FixedUpdate() { //if regular update isn't necessary, move stuff from update to here ig?
+        //If movement input is not 0, try to move, otherwise idle
+        if(movementInput != Vector2.zero) {
+            int count = myBod.Cast(
+                movementInput,
+                movementFilter,
+                castCollisions,
+                moveSpeed * Time.fixedDeltaTime + collisionOffset
+                );
+            if(count == 0) {
+                myBod.MovePosition(myBod.position + movementInput * moveSpeed * Time.fixedDeltaTime);
+                float h = movementInput[0];
+                float v = movementInput[1];
                 myAnim.SetBool("Moving", true);
-                //invoke endMotion in 20 frames
-                Invoke("endMotion", .333f); //doess not appear to work as intended
+                determineDirectionOfMovement(h, v);
             }
-        }
-    }
-
-    //updates the sprite used in the player's idle state
-    private void updateIdleSprite() {
-        if(directionFacing == "left") {
-            mySpriteRenderer.sprite = leftIdle;
-        } else if (directionFacing == "right") {
-            mySpriteRenderer.sprite = rightIdle;
-        } else if (directionFacing == "up") {
-            mySpriteRenderer.sprite = upIdle;
         } else {
-            mySpriteRenderer.sprite = downIdle;
+            myAnim.SetBool("Moving", false);
+            lastInput[0] = 0;
+            lastInput[1] = 0;
         }
     }
 
-    //I might be overthinking some of this
-    private void updateDirectionFacing(string direction) {
-        directionFacing = direction;
+    void OnMove(InputValue movementValue) {
+        movementInput = movementValue.Get<Vector2>();
     }
 
-    private string determineDirectionOfMovement(float h, float v) { //there appear to be problems with this method, will be investigated later
-        //last input same as new input. Continue moving in same direction
+    private void determineDirectionOfMovement(float h, float v) { //more like direction of animation
+        //last input same as new input.
         if((lastInput[0] == h) && (lastInput[1] == v)) { 
-            //apply motion based on direction facing
-
-            //no need to change animation state
-            return directionFacing;
+            //change direction facing
+            myAnim.SetBool("Moving", true);
+            return;
         }
         
-        //last h == new h, last v != new v; prioritize vertical input
+        //last h == new h, last v != new v; prioritize vertical input, change direction facing first frame, do not move yet
         else if((lastInput[0] == h) && (lastInput[1] != v)) {
             lastInput[1] = v;
             //change animation state and apply motion
-            if(v == 1) { //up
-                myAnim.SetInteger("Direction", 0);
-
-                return "up";
-            } else { //v == -1, down
-                myAnim.SetInteger("Direction", 2);
-
-                return "down";
+            switch(v) {
+                case 1:
+                    myAnim.SetBool("Up", true);
+                    myAnim.SetBool("Down", false);
+                    myAnim.SetBool("Left", false);
+                    myAnim.SetBool("Right", false);
+                    directionFacing = "up";
+                    break;
+                case -1:
+                    myAnim.SetBool("Down", true);
+                    myAnim.SetBool("Up", false);
+                    myAnim.SetBool("Left", false);
+                    myAnim.SetBool("Right", false);
+                    directionFacing = "down";
+                    break;
+                default:
+                    break;
             }
+            //myAnim.SetBool("Moving", false);
+            return;
         }
 
-        //last h != new h, last v == new v; prioritize horizontal input
+        //last h != new h, last v == new v; prioritize horizontal input, change direction facing first frame, do not move yet
         else if((lastInput[0] != h) && (lastInput[1] == v)) {
             lastInput[0] = h;
             //change animaion state and apply motion
-            if(h == 1) { //right
-                myAnim.SetInteger("Direction", 3);
-
-                return "right";
-            } else { //h = -1, left
-                myAnim.SetInteger("Direction", 1);
-
-                return "left";
+            switch(h) {
+                case 1:
+                    myAnim.SetBool("Down", false);
+                    myAnim.SetBool("Up", false);
+                    myAnim.SetBool("Left", false);
+                    myAnim.SetBool("Right", true);
+                    directionFacing = "right";
+                    break;
+                case -1:     //h = -1, left
+                    myAnim.SetBool("Down", false);
+                    myAnim.SetBool("Up", false);
+                    myAnim.SetBool("Left", true);
+                    myAnim.SetBool("Right", false);
+                    directionFacing = "left";
+                    break;
+                default:
+                    break;    
             }
+            //myAnim.SetBool("Moving", false);
+            return;
         }
 
-        else {// neither horizontal nor vertical match the last input. prioritize vertical input
+        else if((lastInput[0] != h) && (lastInput[1] != v)) { //neither h nor v match the last input, figure out prioritization from there 
             lastInput[0] = h;
             lastInput[1] = v;
-
-            //change animation state and apply motion
-            if(v == 1) { //up
-                myAnim.SetInteger("Direction", 0);
-
-                return "up";
-            } else { //v == -1, down
-                myAnim.SetInteger("Direction", 2);
-
-                return "down";
-            }
+            switch(directionFacing) {
+                case "left":
+                case "right":
+                    switch(v) {
+                        case 1:
+                            myAnim.SetBool("Up", true);
+                            myAnim.SetBool("Down", false);
+                            myAnim.SetBool("Left", false);
+                            myAnim.SetBool("Right", false);
+                            directionFacing = "up";
+                            break;
+                        case -1:
+                            myAnim.SetBool("Down", true);
+                            myAnim.SetBool("Up", false);
+                            myAnim.SetBool("Left", false);
+                            myAnim.SetBool("Right", false);
+                            directionFacing = "down";
+                            break;
+                        default:
+                            break;
+                    } 
+                break;
+                case "up":
+                case "down":
+                    switch(h) {
+                        case 1:
+                            myAnim.SetBool("Down", false);
+                            myAnim.SetBool("Up", false);
+                            myAnim.SetBool("Left", false);
+                            myAnim.SetBool("Right", true);
+                            directionFacing = "right";
+                            break;
+                        case -1:     //h = -1, left
+                            myAnim.SetBool("Down", false);
+                            myAnim.SetBool("Up", false);
+                            myAnim.SetBool("Left", true);
+                            myAnim.SetBool("Right", false);
+                            directionFacing = "left";
+                            break;
+                        default:
+                            break;    
+                    }
+                    break;
+                default:
+                    break;
+                }
+            return;
         }
     }
 
-    private void endMotion() {
-        inMotion = false;
+    private void determineDirectionOfAnimation(float h, float v) {
+        
     }
+
 }
