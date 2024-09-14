@@ -11,7 +11,7 @@ public float moveSpeed = 1f;
     Vector2 movementInput;
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
-    //Animator animator;
+    Animator animator;
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
     bool canMove = true;
 
@@ -19,7 +19,7 @@ public float moveSpeed = 1f;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -39,9 +39,9 @@ public float moveSpeed = 1f;
                         success = TryMove(new Vector2(0, movementInput.y));
                     }
 
-                //animator.SetBool("isMoving", success);
+                animator.SetBool("isMoving", success);
             } else {
-                //animator.SetBool("isMoving", false);
+                animator.SetBool("isMoving", false);
             }
 
             //Set direction od sprite to movement direction
@@ -77,7 +77,7 @@ public float moveSpeed = 1f;
     }
 
     void OnFire() {
-        //canMove = false;
+        canMove = false;
         //animator.SetTrigger("swordAttack");
     }
 
@@ -88,6 +88,86 @@ public float moveSpeed = 1f;
     public void UnlockMovement(){
         canMove = true;
     }
+
+
+    /////////////////////////////////////////
+    ///Logic for item interactions///////////
+    /////////////////////////////////////////
+    
+public float interactionRadius = 2f; // Set the interaction radius (e.g., 2 units)
+    private HighlightableItem closestItem = null;
+    public LayerMask interactableLayer;  // Create a LayerMask for interactable items
+
+    private void Update()
+    {
+        FindClosestItem();
+
+        // Interact with the closest item if it's within range and the player presses the key
+        if (closestItem != null && Input.GetKeyDown(KeyCode.Space))
+        {
+            closestItem.Interact();
+        }
+    }
+
+    private void FindClosestItem()
+    {
+        // Use OverlapCircle to find all colliders within the interaction radius
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, interactionRadius, interactableLayer);
+
+        float closestDistance = interactionRadius; // Set the max allowed interaction distance
+        HighlightableItem newClosestItem = null;
+
+        foreach (Collider2D collider in colliders)
+        {
+            HighlightableItem item = collider.GetComponent<HighlightableItem>();
+
+            // Ensure the item has the HighlightableItem component
+            if (item != null)
+            {
+                float distance = Vector2.Distance(transform.position, item.transform.position);
+
+                // If this item is closer than the current closest item, consider it
+                if (newClosestItem == null || distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    newClosestItem = item;
+                }
+            }
+        }
+
+        // If the closest item has changed, update the highlight states
+        if (newClosestItem != closestItem)
+        {
+            // Unhighlight the previous closest item, if any
+            if (closestItem != null)
+            {
+                closestItem.Unhighlight();
+            }
+
+            // Highlight the new closest item, if any
+            if (newClosestItem != null)
+            {
+                newClosestItem.Highlight();
+            }
+
+            closestItem = newClosestItem;
+        }
+
+        // If no items are within the interaction radius, ensure no item remains highlighted
+        if (newClosestItem == null && closestItem != null)
+        {
+            closestItem.Unhighlight();
+            closestItem = null;
+        }
+    }
+
+    // Optional: to visualize the interaction radius in the editor
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, interactionRadius);
+    }
+
 
 }
 
