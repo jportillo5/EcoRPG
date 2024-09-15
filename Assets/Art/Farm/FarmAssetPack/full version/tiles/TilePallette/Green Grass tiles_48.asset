@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: tiles_60
+  m_Name: Green Grass tiles_48
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 1027792, guid: 667e9630c15ed6b4889e7a8e640a5996, type: 3}
+  m_Sprite: {fileID: -94695782, guid: 667e9630c15ed6b4889e7a8e640a5996, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
