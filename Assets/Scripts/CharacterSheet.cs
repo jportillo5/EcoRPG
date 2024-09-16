@@ -6,8 +6,13 @@ using UnityEngine;
 //[Serializable] //not sure if we need this
 public class CharacterSheet : MonoBehaviour //Represents the character's stats, spell list, etc. Used by both players and enemies
 {
-    public int hp; //health points
-    public int mp; //mana points, used to cast spells
+    //Character's stats
+    
+    public int hp; //health points //currently missing max HP
+    public int mp; //mana points, used to cast spells. Change to be private later
+
+    public int maxHP;
+    public int maxMP;
     public int atk; //physical strength
     public int matk; //magical strength
     public int def; //will cover both physical and magic attacks
@@ -25,6 +30,7 @@ public class CharacterSheet : MonoBehaviour //Represents the character's stats, 
     //Getters
     public int getHP() { return hp; }
     public int getMP() { return mp; }
+    public int getMaxMP() { return maxMP; }
     public int getAtk() { return atk; }
     public int getMatk() { return matk; }
     public int getDef() { return def; }
@@ -34,5 +40,25 @@ public class CharacterSheet : MonoBehaviour //Represents the character's stats, 
     public int getExpForNextLevel() { return expForNextLevel; }
     public int getExpReward() { return expReward; }
 
+    public List<string> getSpellNames() {
+        List<string> spellNames = new List<string>();
+        foreach(Spell s in spells) {
+            spellNames.Add(s.getName());
+        }
+        return spellNames;
+    }
 
+    //get the necessary datat from the spell
+
+    public string getSpellDescription(int i) {
+        return spells[i].getDescription();
+    }
+
+    public int getSpellCost(int i) {
+        return spells[i].getCost();
+    }
+
+    public Spell getSpell(int i) {
+        return spells[i];
+    }
 }

@@ -19,6 +19,7 @@ public class Spell
     //Getters
     public string getName() { return name; }
     public string getType() { return type;}
+    public int getCost() { return cost; }
     public int getPower() { return power; }
     public string getDescription() { return description; }
     public string getEffect() { return effect; }

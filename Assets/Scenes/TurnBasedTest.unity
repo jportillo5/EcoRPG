@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 470464586}
   - component: {fileID: 470464585}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: PC's health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -554,6 +554,85 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &784238020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 784238021}
+  - component: {fileID: 784238023}
+  - component: {fileID: 784238022}
+  m_Layer: 5
+  m_Name: Dialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &784238021
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784238020}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1531888353}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -550, y: 0}
+  m_SizeDelta: {x: 600, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &784238022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784238020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 50
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Text Goes Here
+--- !u!222 &784238023
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784238020}
+  m_CullTransparentMesh: 1
 --- !u!4 &960442662 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7474503811086990632, guid: 3247f5f4964c17d49bfead0a1d6a2944, type: 3}
@@ -670,6 +749,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1267590198}
     m_Modifications:
+    - target: {fileID: 50894213055200781, guid: 3247f5f4964c17d49bfead0a1d6a2944, type: 3}
+      propertyPath: maxHP
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 50894213055200781, guid: 3247f5f4964c17d49bfead0a1d6a2944, type: 3}
+      propertyPath: maxMP
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5550728534548773427, guid: 3247f5f4964c17d49bfead0a1d6a2944, type: 3}
       propertyPath: m_Name
       value: SlimeEnemy (1)
@@ -975,7 +1062,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 784238021}
   m_Father: {fileID: 1051452882}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1347,6 +1435,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 1267590198}
     m_Modifications:
     - target: {fileID: 2347923120637419819, guid: 952b32115bb54d74f9c9bdaba3acce9f, type: 3}
+      propertyPath: maxHP
+      value: 67
+      objectReference: {fileID: 0}
+    - target: {fileID: 2347923120637419819, guid: 952b32115bb54d74f9c9bdaba3acce9f, type: 3}
+      propertyPath: maxMP
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 2347923120637419819, guid: 952b32115bb54d74f9c9bdaba3acce9f, type: 3}
       propertyPath: weapon.name
       value: Grandpa's Sheers
       objectReference: {fileID: 0}
@@ -1358,6 +1454,10 @@ PrefabInstance:
       propertyPath: weapon.description
       value: The gardening sheers Gramps gave me. Careful not to cut your fur...
         again...
+      objectReference: {fileID: 0}
+    - target: {fileID: 2347923120637419819, guid: 952b32115bb54d74f9c9bdaba3acce9f, type: 3}
+      propertyPath: spells.Array.data[0].power
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3817990707454700605, guid: 952b32115bb54d74f9c9bdaba3acce9f, type: 3}
       propertyPath: m_SortingOrder
@@ -1510,6 +1610,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1267590198}
     m_Modifications:
+    - target: {fileID: 50894213055200781, guid: 3247f5f4964c17d49bfead0a1d6a2944, type: 3}
+      propertyPath: maxHP
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 50894213055200781, guid: 3247f5f4964c17d49bfead0a1d6a2944, type: 3}
+      propertyPath: maxMP
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5550728534548773427, guid: 3247f5f4964c17d49bfead0a1d6a2944, type: 3}
       propertyPath: m_Name
       value: SlimeEnemy
