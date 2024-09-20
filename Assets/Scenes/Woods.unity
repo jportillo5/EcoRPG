@@ -184,7 +184,11 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
+<<<<<<< HEAD:Assets/Scenes/Woods.unity
+  orthographic size: 0.8
+=======
   orthographic size: 0.86281866
+>>>>>>> 5e230e338d8fcd725a3779289c8cc67de9f8e106:Assets/Scenes/PracticeScene.unity
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -62701,7 +62705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7271049020162625856, guid: 9cc2325c627d12d459288bf29692436b, type: 3}
       propertyPath: sceneToLoad
-      value: PracticeScene2
+      value: Farm
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
