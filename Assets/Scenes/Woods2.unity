@@ -177,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7271049020162625856, guid: 9cc2325c627d12d459288bf29692436b, type: 3}
       propertyPath: sceneToLoad
-      value: Woods2
+      value: Farm
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -315,11 +315,11 @@ Transform:
   m_GameObject: {fileID: 1716538890}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.21062547, y: 0.020845547, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2134187806}
+  m_Father: {fileID: 3487500490904982660}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1991526927
 GameObject:
@@ -3297,7 +3297,7 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1001 &2134187805
+--- !u!1001 &3487500490904982659
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -3313,13 +3313,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sprout
       objectReference: {fileID: 0}
+    - target: {fileID: 8101824418270390599, guid: 27ad80440315c784eafa378c21b724a2, type: 3}
+      propertyPath: m_SpriteTilingProperty.border.w
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101824418270390599, guid: 27ad80440315c784eafa378c21b724a2, type: 3}
+      propertyPath: m_SpriteTilingProperty.border.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101824418270390599, guid: 27ad80440315c784eafa378c21b724a2, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101824418270390599, guid: 27ad80440315c784eafa378c21b724a2, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.33
+      objectReference: {fileID: 0}
     - target: {fileID: 8282200029986872218, guid: 27ad80440315c784eafa378c21b724a2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.21062547
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8282200029986872218, guid: 27ad80440315c784eafa378c21b724a2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.020845547
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8282200029986872218, guid: 27ad80440315c784eafa378c21b724a2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3361,10 +3377,10 @@ PrefabInstance:
       addedObject: {fileID: 1716538893}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27ad80440315c784eafa378c21b724a2, type: 3}
---- !u!4 &2134187806 stripped
+--- !u!4 &3487500490904982660 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8282200029986872218, guid: 27ad80440315c784eafa378c21b724a2, type: 3}
-  m_PrefabInstance: {fileID: 2134187805}
+  m_PrefabInstance: {fileID: 3487500490904982659}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -3372,4 +3388,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 971963601}
   - {fileID: 939657056}
-  - {fileID: 2134187805}
+  - {fileID: 3487500490904982659}
