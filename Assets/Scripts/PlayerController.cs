@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
     public ContactFilter2D movementFilter;
     public float collisionOffset = 0.05f;
 
+    AudioSource myAudioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
         lastInput = new float[] {0, 0}; //no input
         myBod = GetComponent<Rigidbody2D>();
         directionFacing = "down";
+        myAudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -79,6 +82,12 @@ public class PlayerController : MonoBehaviour
             lastInput[0] = 0;
             lastInput[1] = 0;
         }
+
+        //If playerpresses 'F' on the keyboard
+        if(Input.GetKeyDown(KeyCode.F)) {
+            myAudioSource.Play();
+        }
+
     }
 
     void OnMove(InputValue movementValue) {
