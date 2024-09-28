@@ -7,7 +7,7 @@ public class NPCWander : MonoBehaviour
     public float moveSpeed = 2f; // Speed at which NPC moves
     public float waitTime = 2f;  // Time to wait before moving to the next point
     public GameObject boundsObject; // Reference to the bounds object with BoxCollider2D
-    
+
     private Vector2 minBounds;  // Bottom-left corner of the bounds
     private Vector2 maxBounds;  // Top-right corner of the bounds
     private Vector2 targetPosition; // The current target position to move towards
@@ -15,10 +15,12 @@ public class NPCWander : MonoBehaviour
     private Vector2 currentDirection;
 
     private Rigidbody2D rb;
+    private Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
         // Get the bounds from the BoxCollider2D
         BoxCollider2D boundsCollider = boundsObject.GetComponent<BoxCollider2D>();
@@ -61,7 +63,7 @@ public class NPCWander : MonoBehaviour
 
                 // Move towards the target position
                 yield return StartCoroutine(MoveToTarget());
-
+                
                 // Wait before picking a new target
                 yield return new WaitForSeconds(waitTime);
             }
@@ -74,16 +76,53 @@ public class NPCWander : MonoBehaviour
         {
             // Only move in straight lines (either x or y) at a time
             Vector2 newPosition = rb.position + currentDirection * moveSpeed * Time.deltaTime;
-            
+
             // Ensure NPC stays within bounds (manual clamping)
             newPosition.x = Mathf.Clamp(newPosition.x, minBounds.x, maxBounds.x);
             newPosition.y = Mathf.Clamp(newPosition.y, minBounds.y, maxBounds.y);
 
             rb.MovePosition(newPosition); // Apply the movement
+            
+            // Update animator parameters
+            UpdateAnimator(newPosition);
+
             yield return null;
         }
 
         isMoving = false;
+        // Reset animator parameters when not moving
+        animator.SetFloat("Speed", 0);
+    }
+
+    void UpdateAnimator(Vector2 newPosition)
+    {
+        // Set animator parameters based on movement
+        animator.SetFloat("Speed", moveSpeed); // Set Speed based on moveSpeed
+
+        // Determine Horizontal and Vertical values for the animator
+        float horizontal = 0f;
+        float vertical = 0f;
+
+        // Update horizontal and vertical based on current direction
+        if (currentDirection == Vector2.left)
+        {
+            horizontal = -1f;
+        }
+        else if (currentDirection == Vector2.right)
+        {
+            horizontal = 1f;
+        }
+        else if (currentDirection == Vector2.up)
+        {
+            vertical = 1f;
+        }
+        else if (currentDirection == Vector2.down)
+        {
+            vertical = -1f;
+        }
+
+        animator.SetFloat("Horizontal", horizontal);
+        animator.SetFloat("Vertical", vertical);
     }
 
     void OnDrawGizmos()
