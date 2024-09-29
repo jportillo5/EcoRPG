@@ -311,7 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcaaa9a3db00d433cace963503837dd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 15
   waitTime: 2
   boundsObject: {fileID: 3636652955759218268}
 --- !u!70 &4793763749895696079
