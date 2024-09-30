@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     Vector2 movementInput;
     Rigidbody2D myBod;
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+    WeaponController myWeapon;
 
     //Components related to other game objects probably
     
@@ -29,8 +30,6 @@ public class PlayerController : MonoBehaviour
     public ContactFilter2D movementFilter;
     public float collisionOffset = 0.05f;
 
-    AudioSource myAudioSource;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -39,27 +38,8 @@ public class PlayerController : MonoBehaviour
         lastInput = new float[] {0, 0}; //no input
         myBod = GetComponent<Rigidbody2D>();
         directionFacing = "down";
-        myAudioSource = GetComponent<AudioSource>();
+        myWeapon = GetComponentInChildren<WeaponController>();
     }
-
-    // Update is called once per frame
-    /*
-    void Update()
-    {
-        //left -1h, right +1h; up +1v, down -1v
-        float h = movementInput[0];
-        float v = movementInput[1];
-
-        if(h == 0 && v == 0) {
-            myAnim.SetBool("Moving", false);
-            lastInput[0] = 0;
-            lastInput[1] = 0;
-        } else { //move
-            determineDirectionOfMovement(h, v);
-
-        }
-    }
-    */
 
     private void FixedUpdate() { //if regular update isn't necessary, move stuff from update to here ig?
         //If movement input is not 0, try to move, otherwise idle
@@ -82,16 +62,17 @@ public class PlayerController : MonoBehaviour
             lastInput[0] = 0;
             lastInput[1] = 0;
         }
-
-        //If playerpresses 'F' on the keyboard
-        if(Input.GetKeyDown(KeyCode.F)) {
-            myAudioSource.Play();
-        }
-
     }
 
     void OnMove(InputValue movementValue) {
         movementInput = movementValue.Get<Vector2>();
+    }
+
+    void OnFire() { //hitboxes will be controlled by a sort of weapon controller,
+    //which enables and disables the sprite renderer and has a collider to cross-check with enemy colliders
+        myAnim.SetBool("Attacking", true);
+        Invoke("enableWeapon", 13/60f);
+        Invoke("stopAttack", 0.2f);
     }
 
     private void determineDirectionOfMovement(float h, float v) { //more like direction of animation
@@ -207,8 +188,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void determineDirectionOfAnimation(float h, float v) {
-        
+    private void stopAttack() {
+        myAnim.SetBool("Attacking", false);
+    }
+
+    private void enableWeapon() {
+        myWeapon.toggleWeapon(directionFacing);
     }
 
 }
