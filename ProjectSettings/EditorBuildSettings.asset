@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/Woods.unity
+    path: Assets/Scenes/PracticeScene.unity
     guid: f715a2af7191f754e8013ac64ffc2c7e
   - enabled: 1
     path: Assets/Scenes/Farm.unity

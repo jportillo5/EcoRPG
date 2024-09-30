@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
     WeaponController myWeapon;
 
+    AudioSource myAudioSource;
+
     //Components related to other game objects probably
     
     //Private properties
@@ -39,7 +41,17 @@ public class PlayerController : MonoBehaviour
         myBod = GetComponent<Rigidbody2D>();
         directionFacing = "down";
         myWeapon = GetComponentInChildren<WeaponController>();
+        myAudioSource = GetComponent<AudioSource>();
     }
+
+    void Update() {
+        //Play Audioclip when player presses 'F'
+        if (Keyboard.current.fKey.wasPressedThisFrame) {
+            myAudioSource.Play();
+        }
+
+    }
+
 
     private void FixedUpdate() { //if regular update isn't necessary, move stuff from update to here ig?
         //If movement input is not 0, try to move, otherwise idle
