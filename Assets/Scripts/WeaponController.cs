@@ -9,6 +9,8 @@ public class WeaponController : MonoBehaviour
     GameObject upWeapon;
     GameObject leftWeapon;
     GameObject rightWeapon;
+
+    private bool damageLocked;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,12 +28,7 @@ public class WeaponController : MonoBehaviour
         upWeapon.GetComponent<BoxCollider2D>().enabled = false;
         leftWeapon.GetComponent<BoxCollider2D>().enabled = false;
         rightWeapon.GetComponent<BoxCollider2D>().enabled = false;
-    }
-
-    void OnTriggerEnter2D(Collider2D other) {
-        if(other.tag == "Enemy") {
-            //damage the enemy
-        }
+        damageLocked = false;
     }
 
     public void toggleWeapon(string direction) {
@@ -57,6 +54,15 @@ public class WeaponController : MonoBehaviour
         }
         Invoke("disableWeapon", 13/60f);
     }
+
+    /*
+    void OnCollisionEnter2D(Collision2D collision) {
+        if(collision.gameObject.CompareTag("Enemy") && !damageLocked) {
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(1f);
+            damageLocked = true;
+        }
+    }
+    */
     
     private void disableWeapon() {
         downWeapon.GetComponent<SpriteRenderer>().enabled = false;
@@ -68,5 +74,7 @@ public class WeaponController : MonoBehaviour
         upWeapon.GetComponent<BoxCollider2D>().enabled = false;
         leftWeapon.GetComponent<BoxCollider2D>().enabled = false;
         rightWeapon.GetComponent<BoxCollider2D>().enabled = false;
+
+        damageLocked = false;
     }
 }
