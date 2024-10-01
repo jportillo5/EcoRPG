@@ -184,11 +184,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  followRange: 1
-  moveSpeed: 0.75
-  knockbackForce: 0.5
-  strongKnockbackForce: 1
-  knockbackDuration: 0.25
+  followRange: 5
+  moveSpeed: 2
+  knockbackForce: 2
+  strongKnockbackForce: 4
+  knockbackDuration: 0.5
   knockbackRecoveryDelay: 1
   wanderDistance: 0.5
   wanderDelay: 5

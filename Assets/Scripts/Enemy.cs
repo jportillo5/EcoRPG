@@ -163,29 +163,23 @@ public class Enemy : MonoBehaviour
     }
 
     // Called when the slime collides with the player or something that should cause knockback
-    private void OnCollisionEnter2D(Collision2D collision) {
+   private void OnCollisionEnter2D(Collision2D collision) {
+    Debug.Log("Collision with: " + collision.gameObject.name);  // Log what the slime collided with
+
     if (collision.gameObject.CompareTag("Player")) {
-        // Knockback the slime away from the player
+        Debug.Log("Player collision detected.");
+        
         Vector2 knockbackDirection = (transform.position - collision.transform.position).normalized;
+        ApplyKnockback(knockbackDirection, knockbackForce);  // Regular knockback for player collision
 
-        if (collision.gameObject.CompareTag("Weapon")) {
-            ApplyKnockback(knockbackDirection, strongKnockbackForce);  // Apply stronger knockback for sword/weapon
-        } else {
-            ApplyKnockback(knockbackDirection, knockbackForce);  // Apply regular knockback for player collision
+        Player player = collision.gameObject.GetComponent<Player>();
+        if (player != null) {
+            player.TakeDamage(10f);  // Deal damage
+            Debug.Log("Player took damage!");
         }
-
-        // Deal damage to the player (or handle logic)
-        // Since there's no Player class, just call a generic method
-        // Replace this with the actual code for how you want to apply damage to the player.
-
-        Debug.Log("Collision detected with player or sword, applying knockback and dealing damage!");
-
-        // HealthComponent healthComponent = collision.gameObject.GetComponent<HealthComponent>();
-        // if (healthComponent != null) {
-        //     healthComponent.TakeDamage(10f);  // Deal 10 damage to the player
-        // }
     }
 }
+
 
 
     public void TakeDamage(float damage) {
