@@ -208,4 +208,14 @@ public class PlayerController : MonoBehaviour
         myWeapon.toggleWeapon(directionFacing);
     }
 
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "Enemy") {
+            
+        }
+    }
+
+    public string getDirection() {
+        return directionFacing;
+    }
+
 }

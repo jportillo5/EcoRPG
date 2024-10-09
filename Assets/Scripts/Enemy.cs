@@ -191,7 +191,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage) {
         // Apply damage to the slime's health
         Health -= damage;
-
+        //Debug.Log("Slime damaged");
         if (Health <= 0) {
             Defeated();
         }
@@ -203,10 +203,17 @@ public class Enemy : MonoBehaviour
     public void Defeated() {
         animator.Play("Slime_Death");  // Play death animation directly
         moveSpeed = 0f;  // Stop all movement after defeat
+        Invoke("RemoveEnemy", .5f);
     }
 
     // Call this to remove the enemy after defeat animation
     public void RemoveEnemy() {
         Destroy(gameObject);
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.CompareTag("Weapon")) {
+            TakeDamage(1f);
+        }
     }
 }
