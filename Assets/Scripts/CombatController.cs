@@ -198,7 +198,8 @@ public class CombatController : MonoBehaviour //Placed in the combat scene
             case "spell":
                 menuTxt.text += "used " + spellUsed.getName();
                 playerSheet.mp -= spellUsed.getCost();
-                power = spellUsed.getPower();
+                //power = spellUsed.getPower();
+                power = 10;
                 attackerATK = playerSheet.getMatk();
                 defenderDEF = enemies[target].GetComponent<CharacterSheet>().getDef();
                 attackerLVL = playerSheet.getLvl();
@@ -206,7 +207,7 @@ public class CombatController : MonoBehaviour //Placed in the combat scene
             }
         if(action == "spell" && spellUsed.getType() == "heal") {
             //can only heal PC currently
-            playerSheet.hp += playerSheet.maxHP * (spellUsed.getPower() / 100);
+            //playerSheet.hp += playerSheet.maxHP * (spellUsed.getPower() / 100);
         } else {
             enemies[target].GetComponent<CharacterSheet>().hp -= calculateDamage();
             if(enemies[target].GetComponent<CharacterSheet>().hp <= 0) {
@@ -251,7 +252,8 @@ public class CombatController : MonoBehaviour //Placed in the combat scene
             } else { //spell. This sequence would be changed to randomly choose a spell, or some other more complex selection algorithm
                 menuTxt.text = "The slime spat at Sprout"; //would be changed in the future for better flavor text
                 attackerATK = enemies[index].GetComponent<CharacterSheet>().getMatk();
-                power = enemies[index].GetComponent<CharacterSheet>().spells[0].getPower();
+                //power = enemies[index].GetComponent<CharacterSheet>().spells[0].getPower();
+                power = 10;
             }
 
             playerSheet.hp -= calculateDamage();

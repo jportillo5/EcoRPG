@@ -214,4 +214,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public string getDirection() {
+        return directionFacing;
+    }
+
 }
