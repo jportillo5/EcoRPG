@@ -483,6 +483,7 @@ GameObject:
   - component: {fileID: 3036977173686670703}
   - component: {fileID: 8101824418270390599}
   - component: {fileID: 5253379704574502566}
+  - component: {fileID: 119625412834993725}
   m_Layer: 0
   m_Name: Sprout
   m_TagString: Player
@@ -806,6 +807,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &119625412834993725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6879347431728697265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d47092fe86ba8141ad6a6e58bf46e23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &8416678392572830964
 GameObject:
   m_ObjectHideFlags: 0
