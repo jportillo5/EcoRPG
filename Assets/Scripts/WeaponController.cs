@@ -28,12 +28,6 @@ public class WeaponController : MonoBehaviour
         rightWeapon.GetComponent<BoxCollider2D>().enabled = false;
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
-        if(other.tag == "Enemy") {
-            //damage the enemy
-        }
-    }
-
     public void toggleWeapon(string direction) {
         switch(direction) {
             case "down":

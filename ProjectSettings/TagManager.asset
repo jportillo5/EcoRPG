@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerHitbox
+  - Enemy
+  - Weapon
+  - Spell
   layers:
   - Default
   - TransparentFX
