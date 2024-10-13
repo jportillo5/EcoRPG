@@ -66,12 +66,36 @@ public class CombatMenuController : MonoBehaviour
         SetOptions();
     }
 
+    void OnDPAD(InputValue input) {
+        Vector2 navInput = input.Get<Vector2>();
+
+        float v = navInput[1]; //y value
+
+        if(v > 0) {
+            hover--;
+        } else if(v < 0) {
+            hover++;
+        }
+
+        if(hover <=0) {
+            hover = 0;
+        } else if (hover >=4) {
+            hover = 4;
+        } //change this block to loop around the options
+    }
+
+    void OnReturn() {
+        hover = 0;
+        menu = "default";
+        getDefaultOptions();
+    }
+
     void OnFire() {
         switch(menu) {
             case "default":
                 switch(hover) {
                     case 0:
-                        //attack with sword
+                        player.attack();
                         break;
                     case 1:
                         hover = 0;
@@ -90,6 +114,7 @@ public class CombatMenuController : MonoBehaviour
                 break;
             case "spells":
                 spellList[hover].instantiateAttack(getPlayerDirection(), player.GetComponentInParent<Transform>());
+                //perform animations
                 break;
             case "items":
                 switch(hover) { //replace block with call to item's function
@@ -143,6 +168,10 @@ public class CombatMenuController : MonoBehaviour
             }
             optionTexts[i].text += options[i];
         }
+    }
+
+    private void getQuickBinds() { //not implemented yet
+        //options.Clear();
     }
 
     private void clearOptions() {
