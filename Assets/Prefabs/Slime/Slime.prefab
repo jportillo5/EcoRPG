@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2773816918237069481}
   - component: {fileID: 203081630533733284}
   - component: {fileID: 1327700588263998026}
+  - component: {fileID: 79018361306197360}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Enemy
@@ -193,3 +194,15 @@ MonoBehaviour:
   wanderDistance: 0.5
   wanderDelay: 5
   cooldownBeforeWander: 2
+--- !u!114 &79018361306197360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4157368711737515928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 470a234e7d438974c9d847537ff1039e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
