@@ -39,7 +39,7 @@ public class NPCDialogue : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && playerIsClose)
+        if (Input.GetKeyDown(KeyCode.Space) && playerIsClose)
         {
             if (dialoguePanel.activeInHierarchy)
             {
