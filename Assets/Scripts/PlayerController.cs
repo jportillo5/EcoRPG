@@ -80,8 +80,7 @@ public class PlayerController : MonoBehaviour
         movementInput = movementValue.Get<Vector2>();
     }
 
-    void OnFire() { //hitboxes will be controlled by a sort of weapon controller,
-    //which enables and disables the sprite renderer and has a collider to cross-check with enemy colliders
+    public void attack() {
         myAnim.SetBool("Attacking", true);
         Invoke("enableWeapon", 13/60f);
         Invoke("stopAttack", 0.2f);
@@ -212,6 +211,10 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "Enemy") {
             
         }
+    }
+
+    public string getDirection() {
+        return directionFacing;
     }
 
 }

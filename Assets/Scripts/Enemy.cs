@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
     private Coroutine wanderCoroutine;  // Store reference to the active Wander coroutine
     private bool isOnCooldown = false;  // Flag to check if in cooldown before wandering
     private bool isKnockedBack = false;  // Flag to prevent movement during knockback
+    private bool damageLocked = false; // Flag to check if the enemy has "invulnerability frames"
 
     // Health property with getter and setter
     public float Health {
@@ -184,10 +185,12 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage) {
         // Apply damage to the slime's health
-        Health -= damage;
-        //Debug.Log("Slime damaged");
-        if (Health <= 0) {
-            Defeated();
+        if(!damageLocked) {
+            Health -= damage;
+            //Debug.Log("Slime damaged");
+            if (Health <= 0) {
+                Defeated();
+            }
         }
     }
 
@@ -207,7 +210,18 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Weapon")) {
-            TakeDamage(1f);
+            TakeDamage(1f); //replace with a call to the weapon's power
+            //no need to lock damage, the "cooldown" for using the weapon itself should be good enough
+        } else if(other.gameObject.CompareTag("Spell")) { //I can't get the exploding projectile to work as intended, so this block currently isn't functional
+            other.gameObject.GetComponent<SpellAttack>().explode();
+            TakeDamage(other.gameObject.GetComponent<SpellAttack>().getPower());
+            //figure out how to deal knockback
+            damageLocked = true;
+            Invoke("unlockDamage", other.gameObject.GetComponent<SpellAttack>().getDamageCooldown());
         }
+    }
+
+    void unlockDamage() {
+        damageLocked = false;
     }
 }
