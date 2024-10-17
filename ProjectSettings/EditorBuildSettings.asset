@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/PracticeScene.unity
-    guid: f715a2af7191f754e8013ac64ffc2c7e
   - enabled: 1
-    path: Assets/Scenes/Farm.unity
-    guid: 6ac9c1258c40a614a95e7e559b56b64a
+    path: Assets/Scenes/FarmScene.unity
+    guid: b0f29ac2072aa064b9c1658378d411d5
+  - enabled: 1
+    path: Assets/Scenes/ForestScene.unity
+    guid: db9595f71f7314cc0a32c9b916d41a3f
+  - enabled: 1
+    path: Assets/Scenes/ForestShrine.unity
+    guid: 0ffe9fd786423fd4eaa09d6b90ab689e
   m_configObjects: {}
