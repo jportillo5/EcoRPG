@@ -20,6 +20,9 @@ public class CombatMenuController : MonoBehaviour
 
     private int hover;
     private string menu;
+    private bool quickbindsOn;
+
+    private QuickBinds quickBinds;
     
     // Start is called before the first frame update
     void Start()
@@ -32,28 +35,13 @@ public class CombatMenuController : MonoBehaviour
         optionTexts.Add(GameObject.Find("ItemTxt").GetComponent<Text>());
         optionTexts.Add(GameObject.Find("Opt4Txt").GetComponent<Text>());
         getDefaultOptions();
+        quickbindsOn = false;
+        quickBinds = GameObject.Find("Inventory").GetComponent<QuickBinds>();
     }
 
     // Update is called once per frame
     void Update()
     {     
-        if(Input.GetButtonDown("Fire2")) { //this block is a hotfix to test functionality of spells
-            spellList[0].instantiateAttack(getPlayerDirection(), player.GetComponentInParent<Transform>());
-        }
-        
-        //Q goes up the list, E goes down the list, R returns to the default menu.
-        //On controller, L goes up, R goes down, and B goes back
-        /*
-        if(Input.GetKeyDown("Q")) {
-            hover--;
-        } else if(Input.GetKeyDown("E")) {
-            hover++;
-        } else if(Input.GetKeyDown("R")) {
-            hover = 0;
-            menu = "default";
-            getDefaultOptions();
-        }
-        */
 
         if(hover <=0) {
             hover = 0;
@@ -61,12 +49,13 @@ public class CombatMenuController : MonoBehaviour
             hover = 4;
         } //this block should be changed to be able to loop around to the menu and display different options
 
-        //On left click, move to next menu or enact appropriate option
-
         SetOptions();
     }
 
     void OnDPAD(InputValue input) {
+        if(quickbindsOn) {
+            return;
+        }
         Vector2 navInput = input.Get<Vector2>();
 
         float v = navInput[1]; //y value
@@ -85,53 +74,87 @@ public class CombatMenuController : MonoBehaviour
     }
 
     void OnReturn() {
-        hover = 0;
-        menu = "default";
-        getDefaultOptions();
+        if(quickbindsOn) {
+            quickBinds.Use(1);
+            getQuickBindOptions();
+        } else {
+            hover = 0;
+            menu = "default";
+            getDefaultOptions();
+        }
     }
 
     void OnFire() {
-        switch(menu) {
-            case "default":
-                switch(hover) {
-                    case 0:
-                        player.attack();
-                        break;
-                    case 1:
-                        hover = 0;
-                        menu = "spells";
-                        getSpellOptions();
-                        break;
-                    case 2:
-                        hover = 0;
-                        menu = "items";  
-                        getItemOptions();
-                        break;
-                    default:
-                        hover = 0;
-                        break;    
-                }
-                break;
-            case "spells":
-                spellList[hover].instantiateAttack(getPlayerDirection(), player.GetComponentInParent<Transform>());
-                //perform animations
-                break;
-            case "items":
-                switch(hover) { //replace block with call to item's function
-                    case 0:
-                        //heal player
-                        break;
-                    case 1:
-                        //restore MP
-                        break;
-                    case 2:
-                        //fully restore HP and MP
-                        break;
-                    case 3:
-                        //but nothing happened
-                        break;  
-                }
-                break;    
+        if(quickbindsOn) {
+            quickBinds.Use(0);
+        } else {
+            switch(menu) {
+                case "default":
+                    switch(hover) {
+                        case 0:
+                            player.attack();
+                            break;
+                        case 1:
+                            hover = 0;
+                            menu = "spells";
+                            getSpellOptions();
+                            break;
+                        case 2:
+                            hover = 0;
+                            menu = "items";  
+                            getItemOptions();
+                            break;
+                        default:
+                            hover = 0;
+                            break;    
+                    }
+                    break;
+                case "spells":
+                    spellList[hover].instantiateAttack(getPlayerDirection(), player.GetComponentInParent<Transform>());
+                    //perform animations
+                    break;
+                case "items":
+                    switch(hover) { //replace block with call to item's function
+                        case 0:
+                            //heal player
+                            break;
+                        case 1:
+                            //restore MP
+                            break;
+                        case 2:
+                            //fully restore HP and MP
+                            break;
+                        case 3:
+                            //but nothing happened
+                            break;  
+                    }
+                    break;    
+            }
+        }
+    }
+
+    void OnLBump() {
+        if(!quickbindsOn) {
+            return;
+        }
+        quickBinds.Use(2);
+    }
+
+    void OnRBump() {
+        if(!quickbindsOn) {
+            return;
+        }
+        quickBinds.Use(3);
+    }
+
+    void OnQuickBind(InputValue qbValue) {
+        if(qbValue.isPressed) {
+            quickbindsOn = true;
+            getQuickBindOptions();
+        } else {
+            quickbindsOn = false;
+            menu = "default";
+            getDefaultOptions();
         }
     }
 
@@ -151,6 +174,24 @@ public class CombatMenuController : MonoBehaviour
         }
     }
 
+    private void getQuickBindOptions() {
+        options.Clear();
+        GameObject[] binds = quickBinds.getQuickBinds();
+        for(int i = 0; i < binds.Length; i++) {
+            switch(binds[i].tag) {
+                case "Spell":
+                    options.Add(binds[i].GetComponent<Spell>().getName());
+                    break;
+                case "Item":
+                    options.Add("Implement Items");
+                    break;
+                default:
+                    options.Add("Blank");
+                    break;        
+            }
+        }
+    }
+
     private void getItemOptions() {
         options.Clear();
         //in the future, pull items from an inventory. For now, manually generate some
@@ -163,15 +204,11 @@ public class CombatMenuController : MonoBehaviour
     private void SetOptions() {
         clearOptions();
         for(int i = 0; i < optionTexts.Count; i++) {
-            if(hover == i) {
+            if(hover == i && !quickbindsOn) {
                 optionTexts[i].text += "> ";
             }
             optionTexts[i].text += options[i];
         }
-    }
-
-    private void getQuickBinds() { //not implemented yet
-        //options.Clear();
     }
 
     private void clearOptions() {
