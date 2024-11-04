@@ -9,15 +9,15 @@ public class Enemy : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
 
-    public float health = 1;
+    public float health = 10;
     public float followRange = 5f;  // Range within which the enemy will follow the player
     public float moveSpeed = 2f;    // Speed at which the enemy will move towards the player
-    public float knockbackForce = 5f;  // Regular knockback force (for player collision)
-    public float strongKnockbackForce = 10f;  // Stronger knockback force (for sword hits)
-    public float knockbackDuration = 0.2f;  // Duration of the knockback effect
+    public float knockbackForce = 2f;  // Regular knockback force (for player collision)
+    public float strongKnockbackForce = 4f;  // Stronger knockback force (for sword hits)
+    public float knockbackDuration = 0.5f;  // Duration of the knockback effect
     public float knockbackRecoveryDelay = 1f;  // Time to wait after knockback before following the player again
-    public float wanderDistance = 2f;  // Distance to wander in a random direction
-    public float wanderDelay = 2f;  // Delay between random wander movements
+    public float wanderDistance = 0.5f;  // Distance to wander in a random direction
+    public float wanderDelay = 5f;  // Delay between random wander movements
     public float cooldownBeforeWander = 2f;  // Time to wait before wandering again after stopping following
     //public GameObject floatingTextPrefab;  // Prefab for floating text (drag this into the inspector)
 
@@ -80,11 +80,11 @@ public class Enemy : MonoBehaviour
         // Determine which direction to trigger animations for
         if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y)) {
             // Horizontal movement (left/right)
-            animator.Play("Slime_Walking_Left_Right");
+            animator.Play("Enemy_Walking_Left_Right");
             spriteRenderer.flipX = direction.x < 0;  // Flip the sprite based on direction
         } else {
             // Vertical movement (up/down)
-            animator.Play(direction.y > 0 ? "Slime_Walking_Up" : "Slime_Walking_Down");
+            animator.Play(direction.y > 0 ? "Enemy_Walking_Up" : "Enemy_Walking_Down");
         }
     }
 
@@ -106,11 +106,11 @@ public class Enemy : MonoBehaviour
             // Determine which direction to trigger animations for
             if (Mathf.Abs(randomDirection.x) > Mathf.Abs(randomDirection.y)) {
                 // Horizontal movement
-                animator.Play("Slime_Walking_Left_Right");
+                animator.Play("Enemy_Walking_Left_Right");
                 spriteRenderer.flipX = randomDirection.x < 0;  // Flip the sprite based on direction
             } else {
                 // Vertical movement
-                animator.Play(randomDirection.y > 0 ? "Slime_Walking_Up" : "Slime_Walking_Down");
+                animator.Play(randomDirection.y > 0 ? "Enemy_Walking_Up" : "Enemy_Walking_Down");
             }
 
             yield return null;  // Wait until the next frame to continue moving
@@ -198,7 +198,7 @@ public class Enemy : MonoBehaviour
 
     // Called when health reaches 0 or below
     public void Defeated() {
-        animator.Play("Slime_Death");  // Play death animation directly
+        animator.Play("Enemy_Death");  // Play death animation directly
         moveSpeed = 0f;  // Stop all movement after defeat
         Invoke("RemoveEnemy", .5f);
     }
