@@ -32,10 +32,6 @@ public class Projectile : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            // // Assume the player has a method to take damage
-            // collision.GetComponent<Player>().TakeDamage(damage);
-            
-
             Player player = collision.gameObject.GetComponent<Player>();
             if (player != null) {
                 player.TakeDamage(20f);  // Deal damage

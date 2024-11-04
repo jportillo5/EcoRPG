@@ -37,13 +37,21 @@ public class BossSlime : MonoBehaviour
     public float movementCooldown = 3f; // Duration of movement cooldown when health is <= 50
     private bool isMovementCooldownActive = false;
 
+    public UnityEngine.UI.Slider healthBarSlider; // Reference to the health bar slider in the UI
+    private bool isPlayerInRange = false;         // Flag to check if player is within follow range
+
+    public GameObject nonSlimeEnemyPrefab;  // Prefab of the non-slime enemy to spawn
+    public float spawnRate = 30f;            // Time interval between spawns
+    private bool isSpawning = false;        // Flag to ensure spawning starts only once
+
     // Health property with getter and setter
     public float Health {
         set {
             health = value;
+            healthBarSlider.value = health; // Update the health bar UI 21321
             if (health <= 0) {
                 Defeated();
-            }
+            } 
         }
         get {
             return health;
@@ -66,6 +74,10 @@ public class BossSlime : MonoBehaviour
             float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
             if (distanceToPlayer <= followRange) {
+                isPlayerInRange = true;
+                healthBarSlider.gameObject.SetActive(true);
+                healthBarSlider.value = health;
+                
                 if (isWandering) {
                     StopWandering();  // Stop wandering when starting to follow the player
                 }
@@ -75,6 +87,9 @@ public class BossSlime : MonoBehaviour
                     StartCoroutine(ShootProjectileWithCooldown());
                 }
             } else {
+                isPlayerInRange = false;
+                healthBarSlider.gameObject.SetActive(false);  // Hide the health bar if out of range
+
                 // Wander after cooldown if not following the player
                 if (!isWandering && !isOnCooldown) {
                     StartCoroutine(CooldownBeforeWandering());
@@ -203,13 +218,17 @@ public class BossSlime : MonoBehaviour
         if(!damageLocked) {
             Health -= damage;
             //Debug.Log("Slime damaged");
+
+            // Start spawning non-slime enemies when health drops below 70
+            if (Health <= 70 && !isSpawning) {
+                isSpawning = true;  // Set flag to true to avoid restarting the coroutine
+                StartCoroutine(SpawnNonSlimeEnemies());
+            }
             if (Health <= 0) {
                 Defeated();
             } 
             if (Health <= 50)
             {
-                
-
                 if (!isMovementCooldownActive)
                 {
                     StartCoroutine(MovementCooldown());
@@ -230,11 +249,15 @@ public class BossSlime : MonoBehaviour
     // Call this to remove the enemy after defeat animation
     public void RemoveEnemy() {
         Destroy(gameObject);
+        isPlayerInRange = false;
+        healthBarSlider.gameObject.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Weapon")) {
             TakeDamage(10f); //replace with a call to the weapon's power
+            Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
+            ApplyKnockback(knockbackDirection, knockbackForce); 
             //no need to lock damage, the "cooldown" for using the weapon itself should be good enough
         } else if(other.gameObject.CompareTag("Spell")) { //I can't get the exploding projectile to work as intended, so this block currently isn't functional
             other.gameObject.GetComponent<SpellAttack>().explode();
@@ -274,6 +297,16 @@ public class BossSlime : MonoBehaviour
         moveSpeed = originalMoveSpeed; // Restore movement
         isMovementCooldownActive = false;
         canShoot = true;
+    }
+
+    private IEnumerator SpawnNonSlimeEnemies() {
+    while (Health > 0 && isSpawning) {
+        // Spawn the non-slime enemy at the boss's position
+        Instantiate(nonSlimeEnemyPrefab, transform.position, Quaternion.identity);
+
+        // Wait for the next spawn based on the spawn rate
+        yield return new WaitForSeconds(spawnRate);
+        }
     }
 
 }
