@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0603a593a3c9b8846bdc170a83af01e7
+guid: b6da2a6567e69d649a37aefec5b7ddbd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bat_black_0
+      name: cow_black animation_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 80
-        width: 16
-        height: 16
+        y: 96
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31b7c167ce85e3743be741cff51bbcac
-      internalID: 1008717475
+      spriteID: 96a520a0eeeab2f4fb40d474ace46bb3
+      internalID: -416813046
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_black_1
+      name: cow_black animation_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 80
-        width: 16
-        height: 16
+        x: 24
+        y: 96
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,41 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 049595546032be0498bcd53cdff5f3ba
-      internalID: -188619482
+      spriteID: b4144e63b04d2ae4884e13249f5c4028
+      internalID: -1455077067
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_black_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f0fec55b5f107d245bc86f2fda963b05
-      internalID: 1099858210
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bat_black_3
+      name: cow_black animation_2
       rect:
         serializedVersion: 2
         x: 48
-        y: 80
-        width: 16
-        height: 16
+        y: 96
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,20 +192,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c085149540cca8440b917210e45be58a
-      internalID: -1257154266
+      spriteID: e744f5ccdcdac5941b4b7304e1de4e85
+      internalID: -1527188200
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_black_4
+      name: cow_black animation_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 96
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cb8a4772dc74034bb04bfc483af611b
+      internalID: -1342666054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cow_black animation_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 16
-        height: 16
+        y: 72
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,20 +234,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 727d9a8c0dc67f64db74d5f385b92198
-      internalID: 1011281458
+      spriteID: 3e6f170ccf62a294488c0439f12d5bca
+      internalID: 1508614368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_black_5
+      name: cow_black animation_5
       rect:
         serializedVersion: 2
-        x: 16
-        y: 64
-        width: 16
-        height: 16
+        x: 24
+        y: 72
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,41 +255,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcf383cb532974d409a69e5a63c7ca0e
-      internalID: 1876871776
+      spriteID: 369001d561ba15346a9a1fc6226fc0e4
+      internalID: 218656925
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_black_6
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 88d1b6ec62f95394c8bace6ad4d73a0e
-      internalID: -1526663425
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bat_black_7
+      name: cow_black animation_6
       rect:
         serializedVersion: 2
         x: 48
-        y: 64
-        width: 16
-        height: 16
+        y: 72
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -297,20 +276,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fdc1d54fb1d2fea4fa1867e7a434155a
-      internalID: 1986037521
+      spriteID: 908ea318faeb6e5479df522cc0d8ca5d
+      internalID: 1261563853
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_black_8
+      name: cow_black animation_7
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 72
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0a77ecf12746d8428b8873d75741681
+      internalID: -805109930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cow_black animation_8
       rect:
         serializedVersion: 2
         x: 0
         y: 48
-        width: 16
-        height: 16
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -318,20 +318,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c11e289fdf1bbd4ba67dc1b60d24668
-      internalID: -1077574699
+      spriteID: fcf238d8da4c8734f8d3b70056c88104
+      internalID: -1819928992
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_black_9
+      name: cow_black animation_9
       rect:
         serializedVersion: 2
-        x: 16
+        x: 24
         y: 48
-        width: 16
-        height: 16
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -339,41 +339,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb1cfa9ebd0856e4abe250c84fccd003
-      internalID: -1913840781
+      spriteID: 80121b5a70e6bb34e96a9d235c672e0b
+      internalID: 556946652
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_black_10
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9895bdc6068904a459a558b8f3fa14f5
-      internalID: 1441168907
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bat_black_11
+      name: cow_black animation_10
       rect:
         serializedVersion: 2
         x: 48
         y: 48
-        width: 16
-        height: 16
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -381,20 +360,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e5bc6828db8bee42a749dfcbb61a262
-      internalID: -229491322
+      spriteID: 4476f7e565eb9b845a9e9efef886352d
+      internalID: -1034306660
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_black_12
+      name: cow_black animation_11
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 48
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fc5e257bc9619c4eabdd5e678fa467f
+      internalID: 807482944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cow_black animation_12
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
-        width: 16
-        height: 16
+        y: 24
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -402,20 +402,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64b06c7eef24daa498c9952f22af7bf7
-      internalID: -747015097
+      spriteID: 4175e894d705c6f40bd3168d08b92de2
+      internalID: -838382831
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_black_13
+      name: cow_black animation_13
       rect:
         serializedVersion: 2
-        x: 16
-        y: 32
-        width: 16
-        height: 16
+        x: 24
+        y: 24
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -423,41 +423,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92fa80d3753137a4fb082684dbba4760
-      internalID: -1898604004
+      spriteID: 49c1483a8d32350499029293cefe2044
+      internalID: 1059423709
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_black_14
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ca1c5e5070fc5d74786e9dec44d7fda7
-      internalID: -1327230884
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bat_black_15
+      name: cow_black animation_14
       rect:
         serializedVersion: 2
         x: 48
-        y: 32
-        width: 16
-        height: 16
+        y: 24
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -465,20 +444,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b15971e5932a644189c6d9942803c05
-      internalID: 440089361
+      spriteID: 179c79e17d83c744bb01d868f4333ac1
+      internalID: -1627591862
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_black_16
+      name: cow_black animation_15
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 24
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8338906dbccacc4f8e37936f9b822c9
+      internalID: 1614949904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cow_black animation_16
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
-        width: 16
-        height: 16
+        y: 0
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -486,20 +486,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 493199328d39c1340bd7263514bc51fe
-      internalID: 1339681837
+      spriteID: 4a15bbaa27a0abf4ca2fb78c00065475
+      internalID: -8657062
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_black_17
+      name: cow_black animation_17
       rect:
         serializedVersion: 2
-        x: 0
+        x: 24
         y: 0
-        width: 16
-        height: 16
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -507,62 +507,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a3e1b8c7065d0c418f79fa3db5cd86b
-      internalID: -1541805831
+      spriteID: 2586fc6948fcfb04aa32b3f3c5e9e1f1
+      internalID: 1810858000
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_black_18
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 31e19c7a8ba796248a716cd83d11f41a
-      internalID: -887539716
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bat_black_19
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6d1d5a2d3f977f44f8c81cb9129d045b
-      internalID: 2089098159
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bat_black_20
+      name: cow_black animation_18
       rect:
         serializedVersion: 2
         x: 48
         y: 0
-        width: 16
-        height: 16
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -570,8 +528,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7ff51c5731abaa4db1a54ed16bf42bd
-      internalID: 780473940
+      spriteID: a5472db287df4bb40991da5b0393c15e
+      internalID: 328900858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cow_black animation_19
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c688a35c98023c4b8ebbe44378ce06e
+      internalID: -862410830
       vertices: []
       indices: 
       edges: []
@@ -587,27 +566,26 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bat_black_0: 1008717475
-      bat_black_1: -188619482
-      bat_black_10: 1441168907
-      bat_black_11: -229491322
-      bat_black_12: -747015097
-      bat_black_13: -1898604004
-      bat_black_14: -1327230884
-      bat_black_15: 440089361
-      bat_black_16: 1339681837
-      bat_black_17: -1541805831
-      bat_black_18: -887539716
-      bat_black_19: 2089098159
-      bat_black_2: 1099858210
-      bat_black_20: 780473940
-      bat_black_3: -1257154266
-      bat_black_4: 1011281458
-      bat_black_5: 1876871776
-      bat_black_6: -1526663425
-      bat_black_7: 1986037521
-      bat_black_8: -1077574699
-      bat_black_9: -1913840781
+      cow_black animation_0: -416813046
+      cow_black animation_1: -1455077067
+      cow_black animation_10: -1034306660
+      cow_black animation_11: 807482944
+      cow_black animation_12: -838382831
+      cow_black animation_13: 1059423709
+      cow_black animation_14: -1627591862
+      cow_black animation_15: 1614949904
+      cow_black animation_16: -8657062
+      cow_black animation_17: 1810858000
+      cow_black animation_18: 328900858
+      cow_black animation_19: -862410830
+      cow_black animation_2: -1527188200
+      cow_black animation_3: -1342666054
+      cow_black animation_4: 1508614368
+      cow_black animation_5: 218656925
+      cow_black animation_6: 1261563853
+      cow_black animation_7: -805109930
+      cow_black animation_8: -1819928992
+      cow_black animation_9: 556946652
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
