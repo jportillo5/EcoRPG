@@ -220,14 +220,14 @@ public class BossSlime : MonoBehaviour
             //Debug.Log("Slime damaged");
 
             // Start spawning non-slime enemies when health drops below 70
-            // if (Health <= 70 && !isSpawning) {
-            //     isSpawning = true;  // Set flag to true to avoid restarting the coroutine
-            //     StartCoroutine(SpawnNonSlimeEnemies());
-            // }
+            if (Health <= 70 && !isSpawning) {
+                isSpawning = true;  // Set flag to true to avoid restarting the coroutine
+                StartCoroutine(SpawnNonSlimeEnemies());
+            }
             if (Health <= 0) {
                 Defeated();
             } 
-            if (Health <= 100)
+            if (Health <= 50)
             {
                 if (!isMovementCooldownActive)
                 {
