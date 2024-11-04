@@ -42,9 +42,6 @@ public class CombatMenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {     
-        if(Input.GetButtonDown("Fire2")) { //this block is a hotfix to test functionality of spells
-            spellList[0].instantiateAttack(getPlayerDirection(), player.GetComponentInParent<Transform>());
-        }
 
         if(hover <=0) {
             hover = 0;
