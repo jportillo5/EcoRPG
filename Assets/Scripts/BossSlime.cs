@@ -220,14 +220,14 @@ public class BossSlime : MonoBehaviour
             //Debug.Log("Slime damaged");
 
             // Start spawning non-slime enemies when health drops below 70
-            if (Health <= 70 && !isSpawning) {
-                isSpawning = true;  // Set flag to true to avoid restarting the coroutine
-                StartCoroutine(SpawnNonSlimeEnemies());
-            }
+            // if (Health <= 70 && !isSpawning) {
+            //     isSpawning = true;  // Set flag to true to avoid restarting the coroutine
+            //     StartCoroutine(SpawnNonSlimeEnemies());
+            // }
             if (Health <= 0) {
                 Defeated();
             } 
-            if (Health <= 50)
+            if (Health <= 100)
             {
                 if (!isMovementCooldownActive)
                 {
@@ -300,12 +300,12 @@ public class BossSlime : MonoBehaviour
     }
 
     private IEnumerator SpawnNonSlimeEnemies() {
-    while (Health > 0 && isSpawning) {
-        // Spawn the non-slime enemy at the boss's position
-        Instantiate(nonSlimeEnemyPrefab, transform.position, Quaternion.identity);
+        while (Health > 0 && isSpawning) {
+            // Spawn the non-slime enemy at the boss's position
+            Instantiate(nonSlimeEnemyPrefab, transform.position, Quaternion.identity);
 
-        // Wait for the next spawn based on the spawn rate
-        yield return new WaitForSeconds(spawnRate);
+            // Wait for the next spawn based on the spawn rate
+            yield return new WaitForSeconds(spawnRate);
         }
     }
 
