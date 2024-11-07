@@ -82,7 +82,6 @@ public class PlayerController : MonoBehaviour
 
     public void attack() {
         myAnim.SetBool("Attacking", true);
-        Invoke("enableWeapon", 13/60f);
         Invoke("stopAttack", 0.2f);
     }
 
@@ -199,12 +198,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void stopAttack() {
+    private void stopAttack() { //called with an animation event
         myAnim.SetBool("Attacking", false);
     }
 
-    private void enableWeapon() {
+    private void enableWeapon() { //called with an animation event
         myWeapon.toggleWeapon(directionFacing);
+    }
+
+    private void disableWeapon() { //called with an animation event
+        myWeapon.disableWeapon();
     }
 
     void OnTriggerEnter2D(Collider2D other) {
