@@ -49,10 +49,29 @@ public class WeaponController : MonoBehaviour
             default:
                 break;    
         }
-        Invoke("disableWeapon", 13/60f);
+        //Invoke("disableWeapon", 13/60f); now handled through animation events
+    }
+
+    public void toggleWithoutHitbox(string direction) { //used when casting spells 
+        switch(direction) {
+            case "down":
+                downWeapon.GetComponent<SpriteRenderer>().enabled = true;
+                break;
+            case "up":
+                upWeapon.GetComponent<SpriteRenderer>().enabled = true;
+                break;
+            case "left":
+                leftWeapon.GetComponent<SpriteRenderer>().enabled = true;
+                break;
+            case "right":
+                rightWeapon.GetComponent<SpriteRenderer>().enabled = true;
+                break;    
+            default:
+                break;    
+        }
     }
     
-    private void disableWeapon() {
+    public void disableWeapon() {
         downWeapon.GetComponent<SpriteRenderer>().enabled = false;
         upWeapon.GetComponent<SpriteRenderer>().enabled = false;
         leftWeapon.GetComponent<SpriteRenderer>().enabled = false;
