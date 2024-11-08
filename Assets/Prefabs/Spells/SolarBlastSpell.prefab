@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: Solar Blast
   type: exploding
-  cost: 0
-  description: A small projectile that explodes on contact or after 3 seconds
+  cost: 12
+  description: A small projectile that explodes on contact or after 3 seconds. Deals
+    heavy damage
+  healPower: 0
   attack: {fileID: 446983250996632259, guid: 36b0fbea165d19d4289bf693e89516be, type: 3}

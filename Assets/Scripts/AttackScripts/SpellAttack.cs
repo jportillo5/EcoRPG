@@ -40,30 +40,24 @@ public class SpellAttack : MonoBehaviour
 
     
     public void setSpellVelocity(string direction) {
-        print("setting spell velocity with direction" + direction);
         switch(direction) {
             case "up":
-                print("facing up");
                 movement = new Vector3(0, 1, 0);
                 transform.eulerAngles = new Vector3(0, 0, 0);
                 break;
             case "down":
-                print("facing down");
                 movement = new Vector3(0, -1, 0);
                 transform.eulerAngles = new Vector3(0, 0, 180);
                 break;
             case "left":
-                print("facing left");
                 movement = new Vector3(-1, 0, 0);
                 transform.eulerAngles = new Vector3(0, 0, 90);
                 break;
             case "right":
-                print("facing right");
                 movement = new Vector3(1, 0, 0);
                 transform.eulerAngles = new Vector3(0, 0, 270);
                 break;            
         }
-        print("new movement vector: " + movement);
     }
 
     public void startCountdown() {
