@@ -631,8 +631,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
-  maxMP: 0
-  mpRecoveryRate: 0
+  maxMP: 30
+  mpRecoveryRate: 3
 --- !u!1001 &2034163128079658979
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1244,6 +1244,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948631399388195868, guid: cc99d9f7c57c8ad418bf6c12d51edf89,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
