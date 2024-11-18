@@ -103,6 +103,7 @@ MonoBehaviour:
   speed: 4
   explosionSize: 0
   damageCooldown: 1
+  despawnTimer: 7
 --- !u!58 &7282804358192838466
 CircleCollider2D:
   m_ObjectHideFlags: 0

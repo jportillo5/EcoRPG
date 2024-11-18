@@ -11,6 +11,7 @@ public class SpellAttack : MonoBehaviour
     //public float type;
     public float explosionSize; //hopefully this works? set to 0 for non-exploding projectiles
     public float damageCooldown;
+    public float despawnTimer;
     private Vector3 movement;
 
     void Update() {
@@ -61,7 +62,7 @@ public class SpellAttack : MonoBehaviour
     }
 
     public void startCountdown() {
-        Invoke("explode", 3);
+        Invoke("explode", despawnTimer);
     }
 
     public float getPower() {

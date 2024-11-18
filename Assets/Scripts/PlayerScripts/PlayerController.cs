@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate() { //if regular update isn't necessary, move stuff from update to here ig?
         //If movement input is not 0, try to move, otherwise idle
-        if(movementInput != Vector2.zero) {
+        if(movementInput != Vector2.zero && !inputsLocked) {
             int count = myBod.Cast(
                 movementInput,
                 movementFilter,
@@ -98,7 +98,8 @@ public class PlayerController : MonoBehaviour
 
     public void attack() {
         myAnim.SetBool("Attacking", true);
-        Invoke("stopAttack", 0.2f);
+        strafing = true;
+        Invoke("stopAttack", 0.1f);
     }
 
     
@@ -219,8 +220,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void stopAttack() { //called with an animation event
+    private void stopAttack() {
         myAnim.SetBool("Attacking", false);
+        strafing = false;
     }
 
     private void enableWeapon() { //called with an animation event
@@ -231,10 +233,32 @@ public class PlayerController : MonoBehaviour
         myWeapon.disableWeapon();
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Enemy") {
-            
-        }
+    public void enableWeaponWithoutHitbox() { //called when casting a damaging spell. Animation framework should automatically disable the weapon sprite
+        myAnim.SetBool("Attacking", true);
+        Invoke("stopAttack", .2f);
+        //Needs separate animations for spells because current framework is meant to automatically enable and disable hitbox and sprite
+    }
+
+    public void useItemAnimation() {
+        myAnim.SetBool("Item", true);
+        lockMovementNoUnlock();
+    }
+
+    public void stopItemAnimation() {
+        myAnim.SetBool("Item", false);
+    }
+
+    public void lockMovement(float time) { //used for melee attacks and damaging spells
+        inputsLocked = true;
+        Invoke("UnlockMovement", time);
+    }
+
+    public void lockMovementNoUnlock() { //used for the item/healing animation, which has a built in call to unlock movement
+        inputsLocked = true;
+    }
+
+    private void UnlockMovement() {
+        inputsLocked = false;
     }
 
     public string getDirection() {

@@ -49,4 +49,5 @@ MonoBehaviour:
   cost: 5
   description: A small projectile with light damage
   healPower: 0
+  movementTimeout: 0.5
   attack: {fileID: 2089505626649139640, guid: 1400fe085b5e44346ac985a8cebca42a, type: 3}
