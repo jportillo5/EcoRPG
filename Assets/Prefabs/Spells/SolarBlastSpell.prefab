@@ -50,4 +50,5 @@ MonoBehaviour:
   description: A small projectile that explodes on contact or after 3 seconds. Deals
     heavy damage
   healPower: 0
+  movementTimeout: 0.5
   attack: {fileID: 446983250996632259, guid: 36b0fbea165d19d4289bf693e89516be, type: 3}

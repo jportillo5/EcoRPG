@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 
     public float health, maxHealth;
     public float maxMP;
-    public float mpRecoveryRate;
+    public float mpRecoveryRate; //amount of MP meant to be recovered in one second
     float currentMP;
 
     private MPBarController mpBar;
@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
 
     void autoRecoverMP() {
         Debug.Log("autoRecoverMP call successful");
-        currentMP += mpRecoveryRate;
+        currentMP += mpRecoveryRate/60f;
         if(currentMP >= maxMP) {
             currentMP = maxMP;
         }
@@ -96,7 +96,8 @@ public class Player : MonoBehaviour
     public void BeginMPRecovery() {
         Debug.Log("BeginMPRecovery Call successful");
         if(currentMP < maxMP) {
-            Invoke("autoRecoverMP", 1f); //setup needs to be reworked for a smoother transition on the MP recovery
+            float rate = 1f/60f;
+            Invoke("autoRecoverMP", rate); //setup needs to be reworked for a smoother transition on the MP recovery
         }
     }
 }
