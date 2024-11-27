@@ -13,12 +13,15 @@ public class Spell : MonoBehaviour
     public float healPower; //used for healing spells since I can't seem to get it through the attack object for some reason
     public float movementTimeout; //indicates how long to stop the player from moving. The animation framework manually handles this for healing spells
     public GameObject attack; //used to instantiate the object's hitbox and behaviors
+    public AudioClip myClip;
 
     //Getters
     public string getName() { return spellName; }
     public string getType() { return type;}
     public int getCost() { return cost; }
     public string getDescription() { return description; }
+
+    public AudioClip getAudio() { return myClip; }
 
     public void instantiateAttack(string direction, Transform t) {
         //ensure at least one MP is available. If the MP Bar's state is "normal", then the spell can be cast
@@ -43,5 +46,6 @@ public class Spell : MonoBehaviour
 
     }
 
+    
 
 }

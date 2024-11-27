@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         myAnim = GetComponent<Animator>();
-        mySpriteRenderer = GetComponent<SpriteRenderer>();
+        mySpriteRenderer = GameObject.Find("Item").GetComponent<SpriteRenderer>();
         lastInput = new float[] {0, 0}; //no input
         myBod = GetComponent<Rigidbody2D>();
         directionFacing = "down";
@@ -97,15 +97,18 @@ public class PlayerController : MonoBehaviour
     }
 
     public void attack() {
-        myAnim.SetBool("Attacking", true);
         strafing = true;
-        Invoke("stopAttack", 0.1f);
+        myAnim.SetBool("Attacking", true);
+        Invoke("stopAttack", 0.2f);
     }
 
     
 
     private void determineDirectionOfMovement(float h, float v) { //more like direction of animation
         //last input same as new input.
+        if(inputsLocked) {
+            return;
+        }
         if((lastInput[0] == h) && (lastInput[1] == v)) { 
             //change direction facing
             myAnim.SetBool("Moving", true);
@@ -220,8 +223,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void animateSpell() {
+        myAnim.SetBool("Spell", true);
+    }
+
+    public void castSpell() {
+        GameObject.Find("AtkMenu5Options").GetComponent<CombatMenuController>().castSpell();
+        enableWeaponWithoutHitbox();
+    }
+
     private void stopAttack() {
         myAnim.SetBool("Attacking", false);
+        myAnim.SetBool("Spell", false);
+        disableWeapon();
         strafing = false;
     }
 
@@ -234,8 +248,8 @@ public class PlayerController : MonoBehaviour
     }
 
     public void enableWeaponWithoutHitbox() { //called when casting a damaging spell. Animation framework should automatically disable the weapon sprite
-        myAnim.SetBool("Attacking", true);
-        Invoke("stopAttack", .2f);
+        //myAnim.SetBool("Attacking", true);
+        myWeapon.toggleWithoutHitbox(directionFacing);
         //Needs separate animations for spells because current framework is meant to automatically enable and disable hitbox and sprite
     }
 
@@ -246,6 +260,7 @@ public class PlayerController : MonoBehaviour
 
     public void stopItemAnimation() {
         myAnim.SetBool("Item", false);
+        UnlockMovement();
     }
 
     public void lockMovement(float time) { //used for melee attacks and damaging spells
@@ -263,6 +278,18 @@ public class PlayerController : MonoBehaviour
 
     public string getDirection() {
         return directionFacing;
+    }
+
+    public void setSprite(Sprite sprite) {
+        mySpriteRenderer.sprite = sprite;
+    }
+
+    public void enableItemSprite() {
+        mySpriteRenderer.enabled = true;
+    }
+
+    public void disableItemSprite() {
+        mySpriteRenderer.enabled = false;
     }
 
 }

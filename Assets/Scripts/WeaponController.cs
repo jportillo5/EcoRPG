@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
+    public AudioClip meleeSfx;
+
+    AudioSource myAudio;
+    
     GameObject downWeapon;
     GameObject upWeapon;
     GameObject leftWeapon;
@@ -26,6 +30,8 @@ public class WeaponController : MonoBehaviour
         upWeapon.GetComponent<BoxCollider2D>().enabled = false;
         leftWeapon.GetComponent<BoxCollider2D>().enabled = false;
         rightWeapon.GetComponent<BoxCollider2D>().enabled = false;
+
+        myAudio = gameObject.GetComponent<AudioSource>();
     }
 
     public void toggleWeapon(string direction) {
@@ -81,5 +87,9 @@ public class WeaponController : MonoBehaviour
         upWeapon.GetComponent<BoxCollider2D>().enabled = false;
         leftWeapon.GetComponent<BoxCollider2D>().enabled = false;
         rightWeapon.GetComponent<BoxCollider2D>().enabled = false;
+    }
+
+    public void playAudio() {
+        myAudio.PlayOneShot(meleeSfx);
     }
 }
