@@ -16,13 +16,16 @@ public class CombatMenuController : MonoBehaviour
     List<string> options = new List<string>();
 
     public List<Spell> spellList;
+    public Sprite defaultHealItemSprite;
+    private Sprite itemSprite;
     //public List<GameObject> quickBinds;
 
     private int hover;
     private string menu;
     private bool quickbindsOn;
-
+    private bool lockNav;
     private QuickBinds quickBinds;
+    private InventoryManager invManager;
     
     // Start is called before the first frame update
     void Start()
@@ -36,7 +39,10 @@ public class CombatMenuController : MonoBehaviour
         optionTexts.Add(GameObject.Find("Opt4Txt").GetComponent<Text>());
         getDefaultOptions();
         quickbindsOn = false;
+        lockNav = false; //prevents navigation of the menu when casting a spell before it's successfully cast
         quickBinds = GameObject.Find("Inventory").GetComponent<QuickBinds>();
+        itemSprite = defaultHealItemSprite;
+        invManager = GameObject.Find("Inventory").GetComponent<InventoryManager>();
     }
 
     // Update is called once per frame
@@ -110,24 +116,26 @@ public class CombatMenuController : MonoBehaviour
                     }
                     break;
                 case "spells":
-                    spellList[hover].instantiateAttack(getPlayerDirection(), player.GetComponentInParent<Transform>());
-                    //perform animations
+                    if(GameObject.Find("MPBar").GetComponent<MPBarController>().getState() == "normal") {
+                        lockNav = true;
+                        //check to see if it's a damaging or healing spell
+                        if(spellList[hover].getType() == "heal") {
+                            itemSprite = defaultHealItemSprite;
+                            player.setSprite(itemSprite);
+                            player.useItemAnimation();
+                            castSpell();
+                        } else {
+                            player.animateSpell();
+                        }
+                    }
                     break;
                 case "items":
-                    switch(hover) { //replace block with call to item's function
-                        case 0:
-                            //heal player
-                            break;
-                        case 1:
-                            //restore MP
-                            break;
-                        case 2:
-                            //fully restore HP and MP
-                            break;
-                        case 3:
-                            //but nothing happened
-                            break;  
-                    }
+                    lockNav = true;
+                    player.setSprite(invManager.getItemSprite(hover));
+                    //animation will be triggered from the item object itself
+                    invManager.useItem(hover);
+                    quickbindsOn = false;
+                    OnReturn(); //prevent accidental double usage of items.
                     break;    
             }
         }
@@ -183,7 +191,7 @@ public class CombatMenuController : MonoBehaviour
                     options.Add(binds[i].GetComponent<Spell>().getName());
                     break;
                 case "Item":
-                    options.Add("Implement Items");
+                    options.Add(binds[i].GetComponent<Item>().getName() + " x" + binds[i].GetComponent<Item>().getCount());
                     break;
                 default:
                     options.Add("Blank");
@@ -194,11 +202,12 @@ public class CombatMenuController : MonoBehaviour
 
     private void getItemOptions() {
         options.Clear();
-        //in the future, pull items from an inventory. For now, manually generate some
-        options.Add("Potion"); //heals two hearts each(?)
-        options.Add("Honey"); //restores all MP
-        options.Add("Elixir of Life"); //restores all HP and MP
-        options.Add("uh....."); //Do nothing for now, eventually implement being able to have less than 4 options
+        List<Item> items = invManager.getItemObjects();
+        foreach (Item item in items) {
+            options.Add(item.getName() + " x" + item.getCount());
+        }
+        options.Add("");
+        options.Add("");
     }
 
     private void SetOptions() {
@@ -219,5 +228,13 @@ public class CombatMenuController : MonoBehaviour
 
     private string getPlayerDirection() {
         return player.getDirection();
+    }
+
+    public void castSpell() { //called by an animation event to instantiate the spell
+        spellList[hover].instantiateAttack(getPlayerDirection(), player.GetComponentInParent<Transform>());
+    }
+
+    public Sprite getItemSprite() {
+        return itemSprite;
     }
 }

@@ -41,13 +41,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 172253518223823617}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20fbee3f8c43ce14fbe44edcf638ac63, type: 3}
+  m_Script: {fileID: 11500000, guid: f0ba41814b8b4b244a05dd993329eff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spellName: Photo Ball
-  type: Projectile
+  type: projectile
   cost: 5
-  description: A small projectile with light damage
+  description: A medium sized projectile that does light damage
   healPower: 0
   movementTimeout: 0.5
   attack: {fileID: 2089505626649139640, guid: 1400fe085b5e44346ac985a8cebca42a, type: 3}
+  myClip: {fileID: 8300000, guid: a652877b012108e41871f867ada9f176, type: 3}

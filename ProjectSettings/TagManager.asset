@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Weapon
   - Spell
+  - Item
   layers:
   - Default
   - TransparentFX
