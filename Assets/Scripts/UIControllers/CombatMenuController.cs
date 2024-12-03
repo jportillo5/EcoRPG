@@ -195,7 +195,7 @@ public class CombatMenuController : MonoBehaviour
                     break;
                 default:
                     options.Add("Blank");
-                    break;        
+                    break;
             }
         }
     }
@@ -236,5 +236,9 @@ public class CombatMenuController : MonoBehaviour
 
     public Sprite getItemSprite() {
         return itemSprite;
+    }
+
+    public List<Spell> getSpells() {
+        return spellList;
     }
 }
