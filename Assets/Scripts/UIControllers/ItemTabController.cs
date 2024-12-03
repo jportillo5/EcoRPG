@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -7,6 +8,8 @@ using UnityEngine.UI;
 
 public class ItemTabController : MonoBehaviour
 {
+    public float stickSens;
+    
     Text itemDescription;
     Text itemTitle;
     List<Text> itemTexts;
@@ -51,13 +54,14 @@ public class ItemTabController : MonoBehaviour
 
         SubMenu1 = GameObject.Find("ItemSubMenu1");
         SubMenu2 = GameObject.Find("ItemSubMenu2");
-        SubMenu1.SetActive(false);
-        SubMenu2.SetActive(false);
         
         sm1Txt = GameObject.Find("ISM1Text").GetComponent<Text>();
         sm2Txt = GameObject.Find("ISM2Text").GetComponent<Text>();
 
         items = GameObject.Find("Inventory").GetComponent<InventoryManager>().getItemObjects();
+
+        SubMenu1.SetActive(false);
+        SubMenu2.SetActive(false);
     }
 
     void Update() {
@@ -75,29 +79,32 @@ public class ItemTabController : MonoBehaviour
         inputsLocked = false;
     }
 
-    void OnDPAD(InputValue input) {
+    void OnUIMove(InputValue input) {
         Vector2 navInput = input.Get<Vector2>();
-            float h = navInput[0];
-            float v = navInput[1];
+        float h = navInput[0];
+        float v = navInput[1];
         if(!inputsLocked) {
-            if(v > 0) {
+            if(v > stickSens) {
                 hoverY--; //go up towards the top
-            } else if (v < 0) {
+            } else if (v < -stickSens) {
                 hoverY++; //go down towards the bottom
             }
 
-            if(hoverY == 0) {
-                if(h < 0) {
-                    hoverX--;
-                } else if(h > 0) {
-                    hoverX++;
-                }
-            }
-
-            if(hoverY > 3) { //currently only 3 options, no need to go past this
-                hoverY = 3;
+            if(hoverY > 2) { //currently only 3 options, no need to go past this
+                hoverY = 2;
             } else if(hoverY < 0) {
                 hoverY = 0;
+            } else if(Math.Abs(v) > stickSens) { //ensuring it actually attempted to move to a different option
+                pmc.playNavClip();
+            }
+
+            if(hoverY == 0) {
+                if(h < -stickSens) {
+                    hoverX--;
+                } else if(h > stickSens) {
+                    hoverX++;
+                }
+                pmc.playNavClip();
             }
 
             if(hoverX < 0) {
@@ -108,9 +115,9 @@ public class ItemTabController : MonoBehaviour
 
             setDescription();
         } else if(subMenu == "sub1") { //left/right
-            if(h < 0) {
+            if(h < -stickSens) {
                 subHoverX--;
-            } else if(h > 0) {
+            } else if(h > stickSens) {
                 subHoverX++;
             }
 
@@ -118,13 +125,15 @@ public class ItemTabController : MonoBehaviour
                 subHoverX = 2;
             } else if(subHoverX < 0) {
                 subHoverX = 0;
+            } else if(Math.Abs(h) > stickSens) {
+                pmc.playNavClip();
             }
 
             setSubMenu1Text();
         } else if (subMenu == "sub2") {
-            if(v > 0) {
+            if(v > stickSens) {
                 subHoverX--;
-            } else if (v < 0) {
+            } else if (v < -stickSens) {
                 subHoverX++;
             }
 
@@ -132,13 +141,16 @@ public class ItemTabController : MonoBehaviour
                 subHoverX = 0;
             } else if(subHoverX > 3) {
                 subHoverX = 3;
+            } else if(Math.Abs(v) > stickSens) {
+                pmc.playNavClip();
             }
             setSubMenu2Text();
         }
     }
 
-    void OnConfirm() {
+    void OnUIConfirm() {
         if(!inputsLocked) {
+            pmc.playConfirmClip();
             if(hoverY == 0) {
                 inputsLocked = true;
                 switch(hoverX) { //figure out which menu to go back to
@@ -162,70 +174,73 @@ public class ItemTabController : MonoBehaviour
                         pmc.enableTab("options");
                         break;            
                 }
-            } else {
-                switch(subMenu) {
-                    case "none":
-                        inputsLocked = true;
-                        subMenu = "sub1";
-                        //open submenu 1
-                        SubMenu1.SetActive(true);
-                        setSubMenu1Text();
-                        break;
-                    case "sub1":
-                        switch(subHoverX) {
-                            case 0:
+            } else { //hovering over an item, not in a submenu
+                inputsLocked = true;
+                subMenu = "sub1";
+                //open submenu 1
+                SubMenu1.SetActive(true);
+                setSubMenu1Text();
+            }
+        } else { //inputs locked, either tab is disabled or in a submenu
+            switch(subMenu) {
+                case "sub1":
+                    switch(subHoverX) {
+                        case 0:
                             //use the item in hoverY - 1
-                                items[hoverY - 1].useItem();
-                                subMenu = "none";
-                                //disable submenu 1
-                                SubMenu1.SetActive(false);
-                                inputsLocked = false;
-                                subHoverX = 0;
-                                break;
-                            case 1: //add to quickbinds
-                                subMenu = "sub2";
-                                //disable submenu 1
-                                //SubMenu1.SetActive(false);
-                                subHoverX = 0;
-                                //enable submenu 2
-                                SubMenu2.SetActive(true);
-                                setSubMenu2Text();
-                                break;
-                            case 2: //same as return
-                                subMenu = "none";
-                                inputsLocked = false;
-                                subHoverX = 0;
-                                //disable this submenu
-                                SubMenu1.SetActive(false);
-                                break;
-                        }
-                        break;
-                    case "sub2": //add quickbind
-                        GameObject.Find("Inventory").GetComponent<QuickBinds>().setBind(subHoverX, items[hoverY - 1].gameObject);
-                        subMenu = "none";
-                        inputsLocked = false;
-                        subHoverX = 0;
-                        //disable both submenus
-                        SubMenu2.SetActive(false);
-                        SubMenu1.SetActive(false);
-                        break;    
-                }
+                            items[hoverY - 1].useItem();
+                            setTexts();
+                            setDescription();
+                            subMenu = "none";
+                            //disable submenu 1
+                            SubMenu1.SetActive(false);
+                            inputsLocked = false;
+                            subHoverX = 0;
+                            break;
+                        case 1: //add to quickbinds
+                            subMenu = "sub2";
+                            //disable submenu 1
+                            //SubMenu1.SetActive(false);
+                            subHoverX = 0;
+                            //enable submenu 2
+                            SubMenu2.SetActive(true);
+                            setSubMenu2Text();
+                            break;
+                        case 2: //same as return
+                            subMenu = "none";
+                            inputsLocked = false;
+                            subHoverX = 0;
+                            //disable this submenu
+                            SubMenu1.SetActive(false);
+                            break;
+                    }
+                break;
+            case "sub2": //add quickbind
+                GameObject.Find("Inventory").GetComponent<QuickBinds>().setBind(subHoverX, items[hoverY - 1].gameObject);
+                subMenu = "none";
+                inputsLocked = false;
+                subHoverX = 0;
+                //disable both submenus
+                SubMenu2.SetActive(false);
+                SubMenu1.SetActive(false);
+                break;    
             }
         }
     }
 
-    void OnReturn() {
+    void OnUIReturn() {
         switch(subMenu) {
             case "none":
                 if(hoverY == 0) {
                     hoverY = 1;
                     hoverX = 2;
+                    inputsLocked = true;
                     pmc.enableTab("return");
                 } else { //hoverY != 0
                     hoverY = 0;
                 }
                 break;
             case "sub1": //use, add to quickbinds, back. currently no need to mess with quick access items
+                pmc.playReturnClip();
                 subMenu = "none";
                 inputsLocked = false;
                 subHoverX = 0;
@@ -233,6 +248,7 @@ public class ItemTabController : MonoBehaviour
                 SubMenu1.SetActive(false);
                 break;
             case "sub2": //quickbinds slot 1, 2, 3, 4
+                pmc.playReturnClip();
                 subMenu = "sub1";
                 subHoverX = 0;
                 //disable this submenu
@@ -275,13 +291,13 @@ public class ItemTabController : MonoBehaviour
         sm1Txt.text = "What would you like to do with this item?\n\n\n";
         switch(subHoverX) {
             case 0:
-                sm1Txt.text += ">Use\t\t\t\tAdd To Quickbinds\t\t\t\tGo Back";
+                sm1Txt.text += ">Use\t\t\t\tAdd To Quickbinds\t\t\t\tBack";
                 break;
             case 1:
-                sm1Txt.text += "Use\t\t\t\t>Add To Quickbinds\t\t\t\tGo Back";
+                sm1Txt.text += "Use\t\t\t\t>Add To Quickbinds\t\t\t\tBack";
                 break;
             case 2:
-                sm1Txt.text += "Use\t\t\t\tAdd To Quickbinds\t\t\t\t>Go Back";
+                sm1Txt.text += "Use\t\t\t\tAdd To Quickbinds\t\t\t\t>Back";
                 break;        
         }
     }
@@ -304,6 +320,7 @@ public class ItemTabController : MonoBehaviour
                     sm2Txt.text += "Blank";
                     break;
             }
+            sm2Txt.text += "\n\n\n";
         }
     }
 }

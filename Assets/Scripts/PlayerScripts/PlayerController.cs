@@ -12,6 +12,8 @@ using UnityEngine.Android;
 public class PlayerController : MonoBehaviour
 {
     //Components Connected to this game object
+
+    PlayerInput playerInput;
     SpriteRenderer mySpriteRenderer;
     Animator myAnim;
     Vector2 movementInput;
@@ -41,6 +43,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerInput = GetComponent<PlayerInput>();
         myAnim = GetComponent<Animator>();
         mySpriteRenderer = GameObject.Find("Item").GetComponent<SpriteRenderer>();
         lastInput = new float[] {0, 0}; //no input
@@ -92,8 +95,12 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnPause() {
-        inputsLocked = true;
+        playerInput.SwitchCurrentActionMap("UI");
         GameObject.Find("PauseMenu").GetComponent<PauseMenuController>().openMenu();
+    }
+
+    public void regainPlayerControl() {
+        playerInput.SwitchCurrentActionMap("Player");
     }
 
     void OnStrafe(InputValue strafeValue) {
