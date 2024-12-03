@@ -23,10 +23,16 @@ public class Spell : MonoBehaviour
 
     public AudioClip getAudio() { return myClip; }
 
+    public float getPower() {
+        return attack.GetComponent<SpellAttack>().getPower();
+    }
+
     public void instantiateAttack(string direction, Transform t) {
         //ensure at least one MP is available. If the MP Bar's state is "normal", then the spell can be cast
         Player player = GameObject.Find("Sprout").GetComponent<Player>();
         PlayerController pc = GameObject.Find("Sprout").GetComponent<PlayerController>();
+        pc.setAudio(myClip);
+        pc.playAudio();
         if(GameObject.Find("MPBar").GetComponent<MPBarController>().getState() == "normal") {
             if(type == "heal") {
                 //GameObject g = Instantiate(attack);

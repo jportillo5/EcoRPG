@@ -665,10 +665,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   binds:
-  - {fileID: 4355855040178598272, guid: e89dcd833cf003a44a00d922a52ab419, type: 3}
-  - {fileID: 1222313724995609838, guid: ee331ca91e34d3a4586ff90533a3c2d1, type: 3}
-  - {fileID: 1173098707061536111, guid: b21b476410627de488474f82ac657174, type: 3}
-  - {fileID: 6284808319864323698, guid: 6fc6bea209f793b498ad8f2dcba81e09, type: 3}
+  - {fileID: 4603055743915757079, guid: 428be91460666db49b9ff67c1108624b, type: 3}
+  - {fileID: 167633936845498174, guid: a322bc3f81c5c4649ae8bebe55ad2fb9, type: 3}
+  - {fileID: 3172510026794693016, guid: 8a81a68bb6751214b9c4f1f408f48d33, type: 3}
+  - {fileID: 1270601684218611898, guid: 03a31fb77ec0c2a42b78fc2e90fc20ac, type: 3}
 --- !u!4 &923795016
 Transform:
   m_ObjectHideFlags: 0
@@ -824,6 +824,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1148561769120768332, guid: 27ad80440315c784eafa378c21b724a2,
+        type: 3}
+      propertyPath: barkSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8426e43b0296e054aa79e51f18fcb99b, type: 3}
     - target: {fileID: 2983832574979580514, guid: 27ad80440315c784eafa378c21b724a2,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -897,6 +902,16 @@ PrefabInstance:
     - target: {fileID: 5092965486301290473, guid: 27ad80440315c784eafa378c21b724a2,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5253379704574502566, guid: 27ad80440315c784eafa378c21b724a2,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5253379704574502566, guid: 27ad80440315c784eafa378c21b724a2,
+        type: 3}
+      propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6230976403408697759, guid: 27ad80440315c784eafa378c21b724a2,

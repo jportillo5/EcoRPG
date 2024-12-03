@@ -39,19 +39,24 @@ public class Item : MonoBehaviour
     }
 
     public int getCount() {
+        Debug.Log("Retrieving Item Count from Inventory");
         InventoryManager invManager = GameObject.Find("Inventory").GetComponent<InventoryManager>();
-        return invManager.FindItemCount(itemName);
+        int count = invManager.FindItemCount(itemName);
+        Debug.Log("Item count at Item layer: " + count);
+        return count;
     }
 
     public void useItem() {
         //make sure item is in inventory
         InventoryManager invManager = GameObject.Find("Inventory").GetComponent<InventoryManager>();
-        if(invManager.FindItemCount(itemName) != 0) {
+        if(invManager.FindItemCount(itemName) > 0) {
+            Debug.Log("Item can be used");
             //reduce item count by 1 in inventory if available
             invManager.reduceItemCount(itemName, 1);
             //then use item
             Player player = GameObject.Find("Sprout").GetComponent<Player>();
             PlayerController pc = GameObject.Find("Sprout").GetComponent<PlayerController>();
+            pc.setAudio(audioClip);
             //pc.lockMovementNoUnlock();
             pc.useItemAnimation();
             switch(type) {
@@ -65,6 +70,9 @@ public class Item : MonoBehaviour
                     Debug.Log("Type not recognized");
                     break;
             }
+            pc.playAudio();
+        } else {
+            Debug.Log("Item cannot be used");
         }
     }
 }

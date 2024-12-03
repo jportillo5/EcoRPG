@@ -5,7 +5,7 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     QuickBinds quickBinds;
-    public List<GameObject> items;
+    public List<GameObject> items; //ItemSlot objects
     
     // Start is called before the first frame update
     void Start()
@@ -36,12 +36,13 @@ public class InventoryManager : MonoBehaviour
     }
     
     public int FindItemCount(string itemName) {
+        Debug.Log("Searching for item with name " + itemName + " amongst item slot objects in inventory");
         for(int i = 0; i < items.Count; i++) {
-            if(items[i].name == itemName) {
+            if(items[i].GetComponent<ItemSlot>().getItemName() == itemName) {
                 return items[i].GetComponent<ItemSlot>().getItemCount();
             }
         }
-        return 0;
+        return -1;
     }
 
 
@@ -53,12 +54,12 @@ public class InventoryManager : MonoBehaviour
 
     public void useItem(int index) { //system will need to be made a little more robust than this
     //but for now, with only two items in the game, this is perfectly reasonable
-        items[index].GetComponent<ItemSlot>().item.useItem();
+        items[index].GetComponent<ItemSlot>().getItem().useItem();
     }
 
     public void reduceItemCount(string itemName, int rem) {
         for(int i = 0; i < items.Count; i++) {
-            if(items[i].name == itemName) {
+            if(items[i].GetComponent<ItemSlot>().getItemName() == itemName) {
                 items[i].GetComponent<ItemSlot>().removeCount(rem);
             }
         }
