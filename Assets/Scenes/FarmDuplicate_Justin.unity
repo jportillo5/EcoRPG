@@ -634,6 +634,71 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1104436910}
   m_SourcePrefab: {fileID: 100100000, guid: f4c7ca7464c1b40fba366e2ca0d9a90e, type: 3}
+--- !u!1 &923795014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 923795016}
+  - component: {fileID: 923795015}
+  - component: {fileID: 923795017}
+  m_Layer: 0
+  m_Name: Inventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &923795015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923795014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 280c993958ea7af4d92763afb30fb28f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  binds:
+  - {fileID: 4603055743915757079, guid: 428be91460666db49b9ff67c1108624b, type: 3}
+  - {fileID: 167633936845498174, guid: a322bc3f81c5c4649ae8bebe55ad2fb9, type: 3}
+  - {fileID: 3172510026794693016, guid: 8a81a68bb6751214b9c4f1f408f48d33, type: 3}
+  - {fileID: 1270601684218611898, guid: 03a31fb77ec0c2a42b78fc2e90fc20ac, type: 3}
+--- !u!4 &923795016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923795014}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &923795017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923795014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a92648416e6b0048a35eb1eaa57a6fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 2038979775067656849, guid: 8cd50cb0252393142820929d2cf2cb11, type: 3}
+  - {fileID: 7821127358672222838, guid: 95ebdf5a9128438498d2fc2f4b0143f1, type: 3}
 --- !u!1001 &1003517671
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -759,6 +824,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1148561769120768332, guid: 27ad80440315c784eafa378c21b724a2,
+        type: 3}
+      propertyPath: barkSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8426e43b0296e054aa79e51f18fcb99b, type: 3}
     - target: {fileID: 2983832574979580514, guid: 27ad80440315c784eafa378c21b724a2,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -789,6 +859,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4367243356866344683, guid: 27ad80440315c784eafa378c21b724a2,
+        type: 3}
+      propertyPath: meleeSfx
+      value: 
+      objectReference: {fileID: 8300000, guid: 88b1cbe3caa3fee4b8b103b5edd7aba9, type: 3}
     - target: {fileID: 4713908766688171502, guid: 27ad80440315c784eafa378c21b724a2,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -827,6 +902,16 @@ PrefabInstance:
     - target: {fileID: 5092965486301290473, guid: 27ad80440315c784eafa378c21b724a2,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5253379704574502566, guid: 27ad80440315c784eafa378c21b724a2,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5253379704574502566, guid: 27ad80440315c784eafa378c21b724a2,
+        type: 3}
+      propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6230976403408697759, guid: 27ad80440315c784eafa378c21b724a2,
@@ -1488,6 +1573,12 @@ PrefabInstance:
       propertyPath: spellList.Array.size
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2072544114961506112, guid: dea28931a444bad45af4a9b4f26d7596,
+        type: 3}
+      propertyPath: defaultHealItemSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: aebb09356e94bf445b2b466941e6401b,
+        type: 3}
     - target: {fileID: 2072544114961506112, guid: dea28931a444bad45af4a9b4f26d7596,
         type: 3}
       propertyPath: spellList.Array.data[0]
@@ -18580,3 +18671,4 @@ SceneRoots:
   - {fileID: 1062060219}
   - {fileID: 1952144054}
   - {fileID: 357215516}
+  - {fileID: 923795016}

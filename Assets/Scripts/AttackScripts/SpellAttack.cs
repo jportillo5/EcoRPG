@@ -12,8 +12,13 @@ public class SpellAttack : MonoBehaviour
     public float explosionSize; //hopefully this works? set to 0 for non-exploding projectiles
     public float damageCooldown;
     public float despawnTimer;
+    public AudioClip explosionClip;
+    AudioSource myAudio;
     private Vector3 movement;
 
+    void Start() {
+        myAudio = GetComponent<AudioSource>();
+    }
     void Update() {
         //print("movement vector: " + movement);
         transform.position += movement * speed * Time.deltaTime;
@@ -30,6 +35,10 @@ public class SpellAttack : MonoBehaviour
     public void explode() {
         //handle hitbox change for explosion
         transform.localScale = Vector3.one * explosionSize;
+        if(explosionClip != null) {
+            //play audio
+            myAudio.PlayOneShot(explosionClip);
+        }
         movement = new Vector3(0, 0, 0);
         //wait to destroy self
         Invoke("destroySelf", 2);
