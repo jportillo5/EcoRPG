@@ -12,21 +12,26 @@ public class Player : MonoBehaviour
     public float health, maxHealth;
     public float maxMP;
     public float mpRecoveryRate; //amount of MP meant to be recovered in one second
+    public AudioClip damageClip;
     float currentMP;
 
     private MPBarController mpBar;
+    AudioSource myAudio;
+
 
     void Start() {
         health = maxHealth;
         Debug.Log("Player starts with " + health + " health.");
         currentMP = maxMP;
         mpBar = GameObject.Find("MPBar").GetComponent<MPBarController>();
+        myAudio = GetComponent<AudioSource>();
     }
     
 
     public void TakeDamage(float damage)
     {
         health -= damage;
+        myAudio.PlayOneShot(damageClip);
         Debug.Log("Player took " + damage + " damage. Current health: " + health);
         OnPlayerDamaged?.Invoke();
 

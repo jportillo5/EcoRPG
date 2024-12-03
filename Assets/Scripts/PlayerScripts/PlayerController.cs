@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
 
     AudioSource myAudioSource;
 
+    public AudioClip barkSound;
+    private AudioClip miscAudio; //clip set by external sources with the "setAudio" method, and then played with the "playAudio" method
+
     //Components related to other game objects probably
     
     //Private properties
@@ -51,7 +54,7 @@ public class PlayerController : MonoBehaviour
     void Update() {
         //Play Audioclip when player presses 'F'
         if (Keyboard.current.fKey.wasPressedThisFrame) {
-            myAudioSource.Play();
+            myAudioSource.PlayOneShot(barkSound);
         }
 
     }
@@ -86,6 +89,11 @@ public class PlayerController : MonoBehaviour
 
     void OnMove(InputValue movementValue) {
         movementInput = movementValue.Get<Vector2>();
+    }
+
+    void OnPause() {
+        inputsLocked = true;
+        GameObject.Find("PauseMenu").GetComponent<PauseMenuController>().openMenu();
     }
 
     void OnStrafe(InputValue strafeValue) {
@@ -272,7 +280,7 @@ public class PlayerController : MonoBehaviour
         inputsLocked = true;
     }
 
-    private void UnlockMovement() {
+    public void UnlockMovement() {
         inputsLocked = false;
     }
 
@@ -282,6 +290,7 @@ public class PlayerController : MonoBehaviour
 
     public void setSprite(Sprite sprite) {
         mySpriteRenderer.sprite = sprite;
+        mySpriteRenderer.enabled = false;
     }
 
     public void enableItemSprite() {
@@ -290,6 +299,16 @@ public class PlayerController : MonoBehaviour
 
     public void disableItemSprite() {
         mySpriteRenderer.enabled = false;
+    }
+
+    public void setAudio(AudioClip audioClip) {
+        miscAudio = audioClip;
+    }
+
+    public void playAudio() {
+        myAudioSource.PlayOneShot(miscAudio);
+        //to pre-emptively prevent any potential glitches with the sound effects, immediately set misc audio to null after playing
+        miscAudio = null;
     }
 
 }

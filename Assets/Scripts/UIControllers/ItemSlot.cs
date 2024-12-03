@@ -8,7 +8,11 @@ public class ItemSlot : MonoBehaviour
     public int count; //number of this item currently available in
     
     public string getItemName() {
-        return item.name;
+        return item.getName();
+    }
+
+    public Item getItem() {
+        return item;
     }
 
     public string getItemDescription() {
@@ -20,6 +24,7 @@ public class ItemSlot : MonoBehaviour
     }
 
     public int getItemCount() {
+        Debug.Log("item count at ItemSlot layer: " + count);
         return count;
     }
 
