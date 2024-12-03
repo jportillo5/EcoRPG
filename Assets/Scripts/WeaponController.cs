@@ -92,4 +92,8 @@ public class WeaponController : MonoBehaviour
     public void playAudio() {
         myAudio.PlayOneShot(meleeSfx);
     }
+
+    public void setVolume(float volume) {
+        myAudio.volume = volume;
+    }
 }

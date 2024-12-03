@@ -794,6 +794,31 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 242506073686933397, guid: 27ad80440315c784eafa378c21b724a2,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 242506073686933397, guid: 27ad80440315c784eafa378c21b724a2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 505356162053511033, guid: 27ad80440315c784eafa378c21b724a2,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 505356162053511033, guid: 27ad80440315c784eafa378c21b724a2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 505356162053511033, guid: 27ad80440315c784eafa378c21b724a2,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 713693852185629526, guid: 27ad80440315c784eafa378c21b724a2,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -829,6 +854,31 @@ PrefabInstance:
       propertyPath: barkSound
       value: 
       objectReference: {fileID: 8300000, guid: 8426e43b0296e054aa79e51f18fcb99b, type: 3}
+    - target: {fileID: 2104840744433622930, guid: 27ad80440315c784eafa378c21b724a2,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104840744433622930, guid: 27ad80440315c784eafa378c21b724a2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2385591011913202957, guid: 27ad80440315c784eafa378c21b724a2,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2385591011913202957, guid: 27ad80440315c784eafa378c21b724a2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2385591011913202957, guid: 27ad80440315c784eafa378c21b724a2,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2983832574979580514, guid: 27ad80440315c784eafa378c21b724a2,
         type: 3}
       propertyPath: m_AnchorMax.y

@@ -62,6 +62,14 @@ public class Player : MonoBehaviour
         Debug.Log("current health" + health + "/" + maxHealth);
     }
 
+    public float getCurrentHP() {
+        return health;
+    }
+
+    public float getMaxHP() {
+        return maxHealth;
+    }
+
     public float getMaxMP() {
         return maxMP;
     }
@@ -104,5 +112,13 @@ public class Player : MonoBehaviour
             float rate = 1f/60f;
             Invoke("autoRecoverMP", rate); //setup needs to be reworked for a smoother transition on the MP recovery
         }
+    }
+
+    public void setVolume(float volume) {
+        myAudio.volume = volume;
+    }
+
+    public void playClip(AudioClip clip) {
+        myAudio.PlayOneShot(clip);
     }
 }
