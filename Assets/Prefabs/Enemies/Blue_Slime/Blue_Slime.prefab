@@ -316,6 +316,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9cd2b19a2e1d9a44877ab097b50b576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSound: {fileID: 0}
-  deathSound: {fileID: 0}
-  damageSound: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: 4e349dc959014a845b9aa317d1c2b7f0, type: 3}
+  deathSound: {fileID: 8300000, guid: e1e2d06fe0d78194b9c7c8cc88414d0d, type: 3}
+  damageSound: {fileID: 8300000, guid: e1e2d06fe0d78194b9c7c8cc88414d0d, type: 3}
