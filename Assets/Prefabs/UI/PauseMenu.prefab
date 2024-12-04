@@ -1672,7 +1672,7 @@ GameObject:
   - component: {fileID: 9200520345862221536}
   - component: {fileID: 5552397038795802489}
   m_Layer: 5
-  m_Name: Panel (3)
+  m_Name: IPanel4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1909,7 +1909,7 @@ GameObject:
   - component: {fileID: 8286186107973599512}
   - component: {fileID: 6123635879541708560}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: IPanel1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2268,7 +2268,7 @@ GameObject:
   - component: {fileID: 5892179054097482679}
   - component: {fileID: 2436188997404033000}
   m_Layer: 5
-  m_Name: Panel (3)
+  m_Name: SPanel4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2573,7 +2573,7 @@ GameObject:
   - component: {fileID: 6551045282032215513}
   - component: {fileID: 4006760951250723736}
   m_Layer: 5
-  m_Name: Panel (1)
+  m_Name: IPanel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2967,7 +2967,7 @@ GameObject:
   - component: {fileID: 2025030219341460679}
   - component: {fileID: 7830776910378289581}
   m_Layer: 5
-  m_Name: Panel (1)
+  m_Name: SPanel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4096,6 +4096,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stickSens: 0.5
+  panelColors:
+  - {r: 0.827451, g: 1, b: 0.4627451, a: 1}
+  - {r: 0.4862745, g: 0.7137255, b: 0.28235295, a: 1}
 --- !u!1 &4448351553592674091
 GameObject:
   m_ObjectHideFlags: 0
@@ -4691,7 +4694,7 @@ GameObject:
   - component: {fileID: 1580872032630805572}
   - component: {fileID: 6723967246515101175}
   m_Layer: 5
-  m_Name: Panel (2)
+  m_Name: SPanel3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5378,7 +5381,7 @@ GameObject:
   - component: {fileID: 8656902766609307833}
   - component: {fileID: 7116396376114502036}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: SPanel1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6319,6 +6322,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stickSens: 0.5
+  panelColors:
+  - {r: 0.827451, g: 1, b: 0.4627451, a: 1}
+  - {r: 0.4862745, g: 0.7137255, b: 0.28235295, a: 1}
 --- !u!114 &5383325780542132983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6530,7 +6536,7 @@ GameObject:
   - component: {fileID: 8626913767990451057}
   - component: {fileID: 1958698624956658020}
   m_Layer: 5
-  m_Name: Panel (2)
+  m_Name: IPanel3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7762,7 +7768,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: ae434c3c-b1cb-429e-8b79-41218c973763
+  m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &7768928743424953577

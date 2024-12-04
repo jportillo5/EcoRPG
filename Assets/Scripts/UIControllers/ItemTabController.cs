@@ -9,10 +9,12 @@ using UnityEngine.UI;
 public class ItemTabController : MonoBehaviour
 {
     public float stickSens;
+    public List<Color> panelColors;
     
     Text itemDescription;
     Text itemTitle;
     List<Text> itemTexts;
+    List<Image> itemPanels;
     Image itemImage;
     List<Item> items;
 
@@ -51,6 +53,12 @@ public class ItemTabController : MonoBehaviour
         itemTexts.Add(GameObject.Find("ItemText1").GetComponent<Text>());
         itemTexts.Add(GameObject.Find("ItemText2").GetComponent<Text>());
         itemTexts.Add(GameObject.Find("ItemText3").GetComponent<Text>());
+
+        itemPanels = new List<Image>();
+        itemPanels.Add(GameObject.Find("IPanel1").GetComponent<Image>());
+        itemPanels.Add(GameObject.Find("IPanel2").GetComponent<Image>());
+        itemPanels.Add(GameObject.Find("IPanel3").GetComponent<Image>());
+        itemPanels.Add(GameObject.Find("IPanel4").GetComponent<Image>());
 
         SubMenu1 = GameObject.Find("ItemSubMenu1");
         SubMenu2 = GameObject.Find("ItemSubMenu2");
@@ -186,6 +194,7 @@ public class ItemTabController : MonoBehaviour
                 case "sub1":
                     switch(subHoverX) {
                         case 0:
+                            pmc.playConfirmClip();
                             //use the item in hoverY - 1
                             items[hoverY - 1].useItem();
                             setTexts();
@@ -197,6 +206,7 @@ public class ItemTabController : MonoBehaviour
                             subHoverX = 0;
                             break;
                         case 1: //add to quickbinds
+                            pmc.playConfirmClip();
                             subMenu = "sub2";
                             //disable submenu 1
                             //SubMenu1.SetActive(false);
@@ -206,6 +216,7 @@ public class ItemTabController : MonoBehaviour
                             setSubMenu2Text();
                             break;
                         case 2: //same as return
+                            pmc.playConfirmClip();
                             subMenu = "none";
                             inputsLocked = false;
                             subHoverX = 0;
@@ -215,6 +226,7 @@ public class ItemTabController : MonoBehaviour
                     }
                 break;
             case "sub2": //add quickbind
+                pmc.playConfirmClip();
                 GameObject.Find("Inventory").GetComponent<QuickBinds>().setBind(subHoverX, items[hoverY - 1].gameObject);
                 subMenu = "none";
                 inputsLocked = false;
@@ -274,12 +286,14 @@ public class ItemTabController : MonoBehaviour
     private void setTexts() {
         for(int i = 0; i < itemTexts.Count; i++) {
             itemTexts[i].text = "";
+            if(hoverY - 1 == i) {
+                itemPanels[i].color = panelColors[1];
+            } else {
+                itemPanels[i].color = panelColors[0];
+            }
         }
         //in the future, replace this with a more robust method of
         //automatically configuring what the item panels display
-        if(hoverY > 0) {
-            itemTexts[hoverY - 1].text += "> ";
-        }
         itemTexts[0].text += "Fruit Pitcher";
         itemTexts[1].text += "Honey Pot";
         itemTexts[2].text += "";

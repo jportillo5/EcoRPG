@@ -105,9 +105,12 @@ public class OptionsTabController : MonoBehaviour
                 hoverY = 3;
             } else if(hoverY < 0) {
                 hoverY = 0;
+            } else if(Math.Abs(v) > stickSens) {
+                pmc.playNavClip();
             }
 
             if(hoverY == 0) {
+                pmc.playNavClip();
                 if(h < -stickSens) {
                     hoverX--;
                 } else if(h > stickSens) {
@@ -125,7 +128,7 @@ public class OptionsTabController : MonoBehaviour
                 if(h != 0 && Math.Abs(h) > stickSens) {
                     navLocked = true;
                     Invoke("unlockNavChange", 0.5f);
-
+                    pmc.playNavClip();
                     if(h < 0) { //check for stick sensitivity threshold has already been passed
                         musicScale -= .1f;
                     } else if(h > 0) {
@@ -144,7 +147,7 @@ public class OptionsTabController : MonoBehaviour
                 if(h != 0 && Math.Abs(h) > stickSens) {
                     navLocked = true;
                     Invoke("unlockNavChange", 0.5f);
-
+                    pmc.playNavClip();
                     if(h < 0) {
                         sfxScale -= .1f;
                     } else if(h > 0) {
@@ -162,6 +165,7 @@ public class OptionsTabController : MonoBehaviour
             }
         } else if(submenu == "quit") {
             if(h != 0 && Math.Abs(h) > stickSens && !navLocked) {
+                pmc.playNavClip();
                 if(subHover == 0) {
                     subHover = 1;
                 } else {
@@ -176,6 +180,7 @@ public class OptionsTabController : MonoBehaviour
         if(!inputsLocked) {
             switch (hoverY) {
                 case 0: //tabs
+                    pmc.playConfirmClip();
                     inputsLocked = true;
                     switch(hoverX) { //figure out which menu to go back to
                         case 0: //status page
@@ -200,6 +205,7 @@ public class OptionsTabController : MonoBehaviour
                     }
                     break;
                 case 3: //submenu
+                    pmc.playConfirmClip();
                     inputsLocked = true;
                     submenu = "quit";
                     subHover = 0;
@@ -211,6 +217,7 @@ public class OptionsTabController : MonoBehaviour
         } else if(submenu == "quit") {
             switch(subHover) {
                 case 0: //return to previous menu
+                    pmc.playConfirmClip();
                     subMenuPanel.SetActive(false);
                     subHover = 0;
                     submenu = "none";
@@ -232,9 +239,12 @@ public class OptionsTabController : MonoBehaviour
                     hoverX = 3;
                     inputsLocked = true;
                     pmc.enableTab("return");
+                } else {
+                    pmc.playReturnClip();
                 }
                 break;
             case "quit":
+                pmc.playReturnClip();
                 subMenuPanel.SetActive(false);
                 subHover = 0;
                 submenu = "none";
@@ -245,6 +255,8 @@ public class OptionsTabController : MonoBehaviour
 
     private void updateMusicSlider() {
         musicVolume.value = musicScale;
+
+        //mess with music volume
     }
 
     private void updateSfxSlider() {
