@@ -12,41 +12,45 @@ public class Player : MonoBehaviour
     public float health, maxHealth;
     public float maxMP;
     public float mpRecoveryRate; //amount of MP meant to be recovered in one second
-    public AudioClip damageClip;
     float currentMP;
+    public int restarted;
 
     private MPBarController mpBar;
-    AudioSource myAudio;
-
+    LevelLoader ll;
+    
 
     void Start() {
         health = maxHealth;
         Debug.Log("Player starts with " + health + " health.");
         currentMP = maxMP;
         mpBar = GameObject.Find("MPBar").GetComponent<MPBarController>();
-        myAudio = GetComponent<AudioSource>();
+        ll = FindObjectOfType<LevelLoader>();
     }
     
 
     public void TakeDamage(float damage)
     {
         health -= damage;
-        myAudio.PlayOneShot(damageClip);
         Debug.Log("Player took " + damage + " damage. Current health: " + health);
         OnPlayerDamaged?.Invoke();
 
         if (health <= 0)
         {
-            Die();
-            Destroy(gameObject);
+            ll = FindObjectOfType<LevelLoader>();
+            //Die();
+            ll.LoadNextLevel(true);
+            //Destroy(gameObject);
+            
             //Debug.Log("Player has died.");
-            Debug.Log("Player took " + damage + " damage. Current health: " + health);
+            //Debug.Log("Player took " + damage + " damage. Current health: " + health);
         }
     }
 
     void Die()
     {
+        
         Destroy(gameObject);
+        
         //Debug.Log("Player has died.");
         //Debug.Log("Player took " + damage + " damage. Current health: " + health);
         //OnPlayerDeath?.Invoke();
@@ -60,14 +64,6 @@ public class Player : MonoBehaviour
             health = maxHealth;
         }
         Debug.Log("current health" + health + "/" + maxHealth);
-    }
-
-    public float getCurrentHP() {
-        return health;
-    }
-
-    public float getMaxHP() {
-        return maxHealth;
     }
 
     public float getMaxMP() {
@@ -114,11 +110,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void setVolume(float volume) {
-        myAudio.volume = volume;
-    }
-
-    public void playClip(AudioClip clip) {
-        myAudio.PlayOneShot(clip);
+    public void Reset(){
+        Start();
     }
 }
