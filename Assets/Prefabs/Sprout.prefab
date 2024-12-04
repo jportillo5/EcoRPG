@@ -722,6 +722,7 @@ MonoBehaviour:
   maxMP: 30
   mpRecoveryRate: 2
   restarted: 0
+  damageClip: {fileID: 8300000, guid: e9d5da02e381d3e479ab943c1215b788, type: 3}
 --- !u!1001 &3048109945907138608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1259,6 +1260,30 @@ PrefabInstance:
       propertyPath: defaultHealItemSprite
       value: 
       objectReference: {fileID: 21300000, guid: aebb09356e94bf445b2b466941e6401b,
+        type: 3}
+    - target: {fileID: 2072544114961506112, guid: dea28931a444bad45af4a9b4f26d7596,
+        type: 3}
+      propertyPath: spellList.Array.data[0]
+      value: 
+      objectReference: {fileID: 1228542513863586579, guid: 2b8df94235b26e9479fbe9032b03080e,
+        type: 3}
+    - target: {fileID: 2072544114961506112, guid: dea28931a444bad45af4a9b4f26d7596,
+        type: 3}
+      propertyPath: spellList.Array.data[1]
+      value: 
+      objectReference: {fileID: 4577172552876798710, guid: a322bc3f81c5c4649ae8bebe55ad2fb9,
+        type: 3}
+    - target: {fileID: 2072544114961506112, guid: dea28931a444bad45af4a9b4f26d7596,
+        type: 3}
+      propertyPath: spellList.Array.data[2]
+      value: 
+      objectReference: {fileID: 3700598333132046809, guid: 428be91460666db49b9ff67c1108624b,
+        type: 3}
+    - target: {fileID: 2072544114961506112, guid: dea28931a444bad45af4a9b4f26d7596,
+        type: 3}
+      propertyPath: spellList.Array.data[3]
+      value: 
+      objectReference: {fileID: 3797368833641433445, guid: b1e11b0c568f621479b10fa4c9ba6298,
         type: 3}
     - target: {fileID: 2697656641010525124, guid: dea28931a444bad45af4a9b4f26d7596,
         type: 3}

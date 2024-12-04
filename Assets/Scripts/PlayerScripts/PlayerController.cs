@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
-using UnityEditor.Animations;
+//using UnityEditor.Animations;
 using UnityEngine.InputSystem;
-using UnityEditor.Callbacks;
+//using UnityEditor.Callbacks;
 using UnityEngine.Android;
 
 public class PlayerController : MonoBehaviour
@@ -256,6 +256,7 @@ public class PlayerController : MonoBehaviour
 
     private void enableWeapon() { //called with an animation event
         myWeapon.toggleWeapon(directionFacing);
+        myWeapon.playAudio();
     }
 
     private void disableWeapon() { //called with an animation event

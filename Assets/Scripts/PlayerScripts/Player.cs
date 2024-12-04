@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public float mpRecoveryRate; //amount of MP meant to be recovered in one second
     float currentMP;
     public int restarted;
+    public AudioClip damageClip;
 
     private MPBarController mpBar;
     AudioSource myAudio;
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
+        myAudio.PlayOneShot(damageClip);
         Debug.Log("Player took " + damage + " damage. Current health: " + health);
         OnPlayerDamaged?.Invoke();
 
