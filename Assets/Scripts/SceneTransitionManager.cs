@@ -20,6 +20,8 @@ public class SceneTransitionManager : MonoBehaviour
 
             // Load the new scene
             //SceneManager.LoadScene(sceneToLoad);
+            ll = FindObjectOfType<LevelLoader>();
+            
             ll.LoadNextLevel(false);
 
         }
