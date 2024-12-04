@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 
 public class Player : MonoBehaviour
@@ -39,9 +40,11 @@ public class Player : MonoBehaviour
 
         if (health <= 0)
         {
-            ll = FindObjectOfType<LevelLoader>();
+            //Debug.Log("Loading Level");
+            SceneManager.LoadScene("DeathScene");
+            //ll = FindObjectOfType<LevelLoader>();
             //Die();
-            ll.LoadNextLevel(true);
+            //ll.LoadNextLevel(true);
             //Destroy(gameObject);
             
             //Debug.Log("Player has died.");

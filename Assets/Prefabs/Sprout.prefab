@@ -721,7 +721,7 @@ MonoBehaviour:
   maxHealth: 100
   maxMP: 30
   mpRecoveryRate: 2
-  damageClip: {fileID: 8300000, guid: e9d5da02e381d3e479ab943c1215b788, type: 3}
+  restarted: 0
 --- !u!1001 &3048109945907138608
 PrefabInstance:
   m_ObjectHideFlags: 0
