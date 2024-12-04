@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ForestShrine.unity
     guid: 0ffe9fd786423fd4eaa09d6b90ab689e
+  - enabled: 1
+    path: Assets/Scenes/DeathScene.unity
+    guid: 42a8a4981633ab048a1f0b346457ab64
   m_configObjects: {}

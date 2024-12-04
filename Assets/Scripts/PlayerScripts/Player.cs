@@ -12,13 +12,13 @@ public class Player : MonoBehaviour
     public float health, maxHealth;
     public float maxMP;
     public float mpRecoveryRate; //amount of MP meant to be recovered in one second
-    public AudioClip damageClip;
     float currentMP;
+    public int restarted;
 
     private MPBarController mpBar;
     AudioSource myAudio;
     HeartBar heartBar;
-
+    LevelLoader ll;
 
     void Start() {
         health = maxHealth;
@@ -27,28 +27,33 @@ public class Player : MonoBehaviour
         mpBar = GameObject.Find("MPBar").GetComponent<MPBarController>();
         myAudio = GetComponent<AudioSource>();
         heartBar = GameObject.Find("HealthHearts").GetComponent<HeartBar>();
+        ll = FindObjectOfType<LevelLoader>();
     }
     
 
     public void TakeDamage(float damage)
     {
         health -= damage;
-        myAudio.PlayOneShot(damageClip);
         Debug.Log("Player took " + damage + " damage. Current health: " + health);
         OnPlayerDamaged?.Invoke();
 
         if (health <= 0)
         {
-            Die();
-            Destroy(gameObject);
+            ll = FindObjectOfType<LevelLoader>();
+            //Die();
+            ll.LoadNextLevel(true);
+            //Destroy(gameObject);
+            
             //Debug.Log("Player has died.");
-            Debug.Log("Player took " + damage + " damage. Current health: " + health);
+            //Debug.Log("Player took " + damage + " damage. Current health: " + health);
         }
     }
 
     void Die()
     {
+        
         Destroy(gameObject);
+        
         //Debug.Log("Player has died.");
         //Debug.Log("Player took " + damage + " damage. Current health: " + health);
         //OnPlayerDeath?.Invoke();
@@ -64,7 +69,7 @@ public class Player : MonoBehaviour
         OnPlayerDamaged?.Invoke();
         Debug.Log("current health" + health + "/" + maxHealth);
     }
-
+    
     public float getCurrentHP() {
         return health;
     }
@@ -117,6 +122,10 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Reset(){
+        Start();
+    }
+    
     public void setVolume(float volume) {
         myAudio.volume = volume;
     }
