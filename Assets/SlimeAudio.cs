@@ -12,7 +12,7 @@ public class SlimeAudio : MonoBehaviour
     private void Start()
     {
         // Get the AudioSource component
-        audioSource = GetComponent<AudioSource>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     public void PlayAttackSound()
@@ -33,6 +33,7 @@ public class SlimeAudio : MonoBehaviour
 
     public void PlayDamageSound()
     {
+        
         if (damageSound != null)
         {
             audioSource.PlayOneShot(damageSound);
