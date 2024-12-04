@@ -1,9 +1,7 @@
 # EcoRPG
  The repository for the EcoQuest project for the Software Development Capstone course.
 
- A runnable build of the game can be found in the directory EcoRPG/Assets/Build
- This file can be ran like any other executable (hopefully it doesn't think the file's a virus).
- If you wish to examine the scenes and code more directly, you'll need the Unity Hub desktop application and working Unity License. Additionally, you'll need an editor that supports C# (I recommend Visual Studio Code, NOT Visual Studio). After downloading our project or cloning the repository, from the Unity Hub main page, click on the Add drop menu and select "Add project from disk", then find the EcoRPG folder. You'll then be able to open the project.
+ I had attempted to include a runnable build of the game in this repository, however it was ignored when attempting to push it to the repository, and the file size (even as a zip folder) were too big to insert into the repository manually, so you'll have to open up the project through Unity itself. You'll need the Unity Hub desktop application and working Unity License. Additionally, you'll need an editor that supports C# (I recommend Visual Studio Code, NOT Visual Studio). After downloading our project or cloning the repository, from the Unity Hub main page, click on the Add drop menu and select "Add project from disk", then find the EcoRPG folder. You'll then be able to open the project. To create a runnable build, go to "File" and then "Build Settings", then click "Build", there shouldn't be any need to mess with the Build settings.
 
  There are a number of Scenes that aren't included in the Build Settings and were only used for developmental purposes. The scenes included in the Build Settings are:
  - Title Sequence Animation
