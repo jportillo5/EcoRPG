@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
 
     private MPBarController mpBar;
     AudioSource myAudio;
+    HeartBar heartBar;
 
 
     void Start() {
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
         currentMP = maxMP;
         mpBar = GameObject.Find("MPBar").GetComponent<MPBarController>();
         myAudio = GetComponent<AudioSource>();
+        heartBar = GameObject.Find("HealthHearts").GetComponent<HeartBar>();
     }
     
 
@@ -59,6 +61,7 @@ public class Player : MonoBehaviour
         if(health >= maxHealth) {
             health = maxHealth;
         }
+        OnPlayerDamaged?.Invoke();
         Debug.Log("current health" + health + "/" + maxHealth);
     }
 
