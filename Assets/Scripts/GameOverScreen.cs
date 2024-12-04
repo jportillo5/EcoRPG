@@ -24,8 +24,9 @@ public class GameOverScreen : MonoBehaviour
         ResetScene();
     }
     public void ExitButton() {
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         //SceneManager.LoadScene("MainMenu");
+        //ll.LoadNxtLevel(0);
     }
 
     public void ResetScene()
