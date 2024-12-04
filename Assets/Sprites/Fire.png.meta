@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6db8757f7b65f98448b51b94eca248eb
+guid: 554ed810ebafe44a48fa15dd0d6a5a73
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: logo maker_0
+      name: Fire_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 39
-        width: 150
-        height: 105
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd0b302e3c65c45cc86d9fac31bc00e9
-      internalID: -748319051
+      spriteID: a6f5e09340f024f7f8581e63b5caab40
+      internalID: 1693007094
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: logo maker_1
+      name: Fire_1
       rect:
         serializedVersion: 2
-        x: 150
-        y: 39
-        width: 150
-        height: 105
+        x: 32
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,8 +171,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79d0e9702d02c4c89a45d59ffe5626eb
-      internalID: 1594796019
+      spriteID: 8b7474d36e17f49d299e45b7398b81d2
+      internalID: -1927814601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d301087921d90421e84fc7ca00dbbe35
+      internalID: -1732088179
       vertices: []
       indices: 
       edges: []
@@ -188,8 +209,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      logo maker_0: -748319051
-      logo maker_1: 1594796019
+      Fire_0: 1693007094
+      Fire_1: -1927814601
+      Fire_2: -1732088179
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
