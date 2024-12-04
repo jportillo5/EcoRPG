@@ -257,6 +257,7 @@ public class OptionsTabController : MonoBehaviour
         musicVolume.value = musicScale;
 
         //mess with music volume
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().setVolume(musicScale);
     }
 
     private void updateSfxSlider() {

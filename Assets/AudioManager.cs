@@ -31,4 +31,8 @@ public class AudioManager : MonoBehaviour
             Debug.LogError("AudioManager: Music Source or Background Music is missing!");
         }
     }
+
+    public void setVolume(float volume) {
+        musicSource.volume = volume;
+    }
 }
