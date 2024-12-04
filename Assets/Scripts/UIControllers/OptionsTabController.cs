@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class OptionsTabController : MonoBehaviour
@@ -41,6 +42,7 @@ public class OptionsTabController : MonoBehaviour
 
     private bool inputsLocked;
     private bool navLocked; //prevents certain menu interactions from being made too fast
+    private string mainMenuScene;
 
     PauseMenuController pmc;
     
@@ -68,6 +70,7 @@ public class OptionsTabController : MonoBehaviour
         inputsLocked = true;
 
         subMenuPanel.SetActive(false);
+        mainMenuScene = "Title Sequence Animation";
     }
 
     // Update is called once per frame
@@ -226,6 +229,7 @@ public class OptionsTabController : MonoBehaviour
                 case 1:
                     //disable everything and transition to main menu scene
                     Debug.Log("This would hypothetically quit the game");
+                    SceneManager.LoadScene(mainMenuScene);
                     break;    
             }
         }
