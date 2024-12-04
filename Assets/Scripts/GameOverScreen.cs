@@ -19,7 +19,7 @@ public class GameOverScreen : MonoBehaviour
     }
 
     public void RestartButton() {
-        ll.LoadNxtLevel(0);
+        ll.LoadNxtLevel(3);
         //SceneManager.LoadScene(0);
         ResetScene();
     }
