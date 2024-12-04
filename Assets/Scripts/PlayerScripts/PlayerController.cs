@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
 
     AudioSource myAudioSource;
 
+    public AudioClip barkSound;
+    private AudioClip miscAudio; //clip set by external sources with the "setAudio" method, and then played with the "playAudio" method
+
     //Components related to other game objects probably
     
     //Private properties
@@ -39,7 +42,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         myAnim = GetComponent<Animator>();
-        mySpriteRenderer = GetComponent<SpriteRenderer>();
+        mySpriteRenderer = GameObject.Find("Item").GetComponent<SpriteRenderer>();
         lastInput = new float[] {0, 0}; //no input
         myBod = GetComponent<Rigidbody2D>();
         directionFacing = "down";
@@ -51,7 +54,7 @@ public class PlayerController : MonoBehaviour
     void Update() {
         //Play Audioclip when player presses 'F'
         if (Keyboard.current.fKey.wasPressedThisFrame) {
-            myAudioSource.Play();
+            myAudioSource.PlayOneShot(barkSound);
         }
 
     }
@@ -88,6 +91,11 @@ public class PlayerController : MonoBehaviour
         movementInput = movementValue.Get<Vector2>();
     }
 
+    void OnPause() {
+        inputsLocked = true;
+        GameObject.Find("PauseMenu").GetComponent<PauseMenuController>().openMenu();
+    }
+
     void OnStrafe(InputValue strafeValue) {
         if (strafeValue.isPressed) {
             strafing = true;
@@ -97,15 +105,18 @@ public class PlayerController : MonoBehaviour
     }
 
     public void attack() {
-        myAnim.SetBool("Attacking", true);
         strafing = true;
-        Invoke("stopAttack", 0.1f);
+        myAnim.SetBool("Attacking", true);
+        Invoke("stopAttack", 0.2f);
     }
 
     
 
     private void determineDirectionOfMovement(float h, float v) { //more like direction of animation
         //last input same as new input.
+        if(inputsLocked) {
+            return;
+        }
         if((lastInput[0] == h) && (lastInput[1] == v)) { 
             //change direction facing
             myAnim.SetBool("Moving", true);
@@ -220,8 +231,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void animateSpell() {
+        myAnim.SetBool("Spell", true);
+    }
+
+    public void castSpell() {
+        GameObject.Find("AtkMenu5Options").GetComponent<CombatMenuController>().castSpell();
+        enableWeaponWithoutHitbox();
+    }
+
     private void stopAttack() {
         myAnim.SetBool("Attacking", false);
+        myAnim.SetBool("Spell", false);
+        disableWeapon();
         strafing = false;
     }
 
@@ -234,8 +256,8 @@ public class PlayerController : MonoBehaviour
     }
 
     public void enableWeaponWithoutHitbox() { //called when casting a damaging spell. Animation framework should automatically disable the weapon sprite
-        myAnim.SetBool("Attacking", true);
-        Invoke("stopAttack", .2f);
+        //myAnim.SetBool("Attacking", true);
+        myWeapon.toggleWithoutHitbox(directionFacing);
         //Needs separate animations for spells because current framework is meant to automatically enable and disable hitbox and sprite
     }
 
@@ -246,6 +268,7 @@ public class PlayerController : MonoBehaviour
 
     public void stopItemAnimation() {
         myAnim.SetBool("Item", false);
+        UnlockMovement();
     }
 
     public void lockMovement(float time) { //used for melee attacks and damaging spells
@@ -257,12 +280,35 @@ public class PlayerController : MonoBehaviour
         inputsLocked = true;
     }
 
-    private void UnlockMovement() {
+    public void UnlockMovement() {
         inputsLocked = false;
     }
 
     public string getDirection() {
         return directionFacing;
+    }
+
+    public void setSprite(Sprite sprite) {
+        mySpriteRenderer.sprite = sprite;
+        mySpriteRenderer.enabled = false;
+    }
+
+    public void enableItemSprite() {
+        mySpriteRenderer.enabled = true;
+    }
+
+    public void disableItemSprite() {
+        mySpriteRenderer.enabled = false;
+    }
+
+    public void setAudio(AudioClip audioClip) {
+        miscAudio = audioClip;
+    }
+
+    public void playAudio() {
+        myAudioSource.PlayOneShot(miscAudio);
+        //to pre-emptively prevent any potential glitches with the sound effects, immediately set misc audio to null after playing
+        miscAudio = null;
     }
 
 }

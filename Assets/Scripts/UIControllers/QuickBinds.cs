@@ -34,7 +34,7 @@ public class QuickBinds : MonoBehaviour
                 binds[index].GetComponent<Spell>().instantiateAttack(player.getDirection(), player.GetComponentInParent<Transform>());
                 break;
             case "Item":
-                print("Implement Items");
+                binds[index].GetComponent<Item>().useItem();
                 break;
             default:
                 break;    
