@@ -17,5 +17,7 @@
 Some bugs were fixed after the in-class demo. These include:
 - The melee attack sound would not play as intended
 - Sprout's "take damage" sound would not play as intended
-- Enemies would not play their sound effects as intended
+- Enemies would not play their sound effects as intended. The death/take damage sound now plays correctly, but the attack sound still seems to have issues. The decision has been made to leave this bug in.
 - Sprout's Spell List seems to have mysteriously been cleared
+
+The background music will only play if you run the game from the Title Sequence Animation scene. This technically is not a bug due to how the Audio Manager component works.
