@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     public float wanderDelay = 5f;  // Delay between random wander movements
     public float cooldownBeforeWander = 2f;  // Time to wait before wandering again after stopping following
     //public GameObject floatingTextPrefab;  // Prefab for floating text (drag this into the inspector)
-
+    private SlimeAudio slimeAudio;
 
     private Transform player;  // Reference to the player's transform
     private Vector2 wanderTarget;  // Randomly chosen target position to move to
@@ -47,6 +47,7 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();  // Initialize the SpriteRenderer component
         rb = GetComponent<Rigidbody2D>();  // Get the Rigidbody2D for physics
+        slimeAudio = GetComponent<SlimeAudio>();
 
         // Find the player in the scene by its tag
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -169,6 +170,7 @@ public class Enemy : MonoBehaviour
 
     if (collision.gameObject.CompareTag("Player")) {
         Debug.Log("Player collision detected.");
+        slimeAudio.PlayAttackSound();
         
         Vector2 knockbackDirection = (transform.position - collision.transform.position).normalized;
         ApplyKnockback(knockbackDirection, knockbackForce);  // Regular knockback for player collision
@@ -187,6 +189,7 @@ public class Enemy : MonoBehaviour
         // Apply damage to the slime's health
         if(!damageLocked) {
             Health -= damage;
+            slimeAudio.PlayDamageSound();
             //Debug.Log("Slime damaged");
             if (Health <= 0) {
                 Defeated();
@@ -198,6 +201,7 @@ public class Enemy : MonoBehaviour
 
     // Called when health reaches 0 or below
     public void Defeated() {
+        slimeAudio.PlayDeathSound();
         animator.Play("Enemy_Death");  // Play death animation directly
         moveSpeed = 0f;  // Stop all movement after defeat
         Invoke("RemoveEnemy", .5f);
