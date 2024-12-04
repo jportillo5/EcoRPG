@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 
 public class Player : MonoBehaviour
@@ -12,12 +13,14 @@ public class Player : MonoBehaviour
     public float health, maxHealth;
     public float maxMP;
     public float mpRecoveryRate; //amount of MP meant to be recovered in one second
-    public AudioClip damageClip;
     float currentMP;
+    public int restarted;
+    public AudioClip damageClip;
 
     private MPBarController mpBar;
     AudioSource myAudio;
-
+    HeartBar heartBar;
+    LevelLoader ll;
 
     void Start() {
         health = maxHealth;
@@ -25,6 +28,8 @@ public class Player : MonoBehaviour
         currentMP = maxMP;
         mpBar = GameObject.Find("MPBar").GetComponent<MPBarController>();
         myAudio = GetComponent<AudioSource>();
+        heartBar = GameObject.Find("HealthHearts").GetComponent<HeartBar>();
+        ll = FindObjectOfType<LevelLoader>();
     }
     
 
@@ -37,16 +42,23 @@ public class Player : MonoBehaviour
 
         if (health <= 0)
         {
-            Die();
-            Destroy(gameObject);
+            //Debug.Log("Loading Level");
+            SceneManager.LoadScene("DeathScene");
+            //ll = FindObjectOfType<LevelLoader>();
+            //Die();
+            //ll.LoadNextLevel(true);
+            //Destroy(gameObject);
+            
             //Debug.Log("Player has died.");
-            Debug.Log("Player took " + damage + " damage. Current health: " + health);
+            //Debug.Log("Player took " + damage + " damage. Current health: " + health);
         }
     }
 
     void Die()
     {
+        
         Destroy(gameObject);
+        
         //Debug.Log("Player has died.");
         //Debug.Log("Player took " + damage + " damage. Current health: " + health);
         //OnPlayerDeath?.Invoke();
@@ -59,7 +71,16 @@ public class Player : MonoBehaviour
         if(health >= maxHealth) {
             health = maxHealth;
         }
+        OnPlayerDamaged?.Invoke();
         Debug.Log("current health" + health + "/" + maxHealth);
+    }
+    
+    public float getCurrentHP() {
+        return health;
+    }
+
+    public float getMaxHP() {
+        return maxHealth;
     }
 
     public float getMaxMP() {
@@ -104,5 +125,17 @@ public class Player : MonoBehaviour
             float rate = 1f/60f;
             Invoke("autoRecoverMP", rate); //setup needs to be reworked for a smoother transition on the MP recovery
         }
+    }
+
+    public void Reset(){
+        Start();
+    }
+    
+    public void setVolume(float volume) {
+        myAudio.volume = volume;
+    }
+
+    public void playClip(AudioClip clip) {
+        myAudio.PlayOneShot(clip);
     }
 }

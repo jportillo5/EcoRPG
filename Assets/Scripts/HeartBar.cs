@@ -7,6 +7,8 @@ public class HeartBar : MonoBehaviour
     public GameObject heartPrefab;
     public Player player;
 
+    private float previousHealth;
+
     List<HealthHeart> hearts = new List<HealthHeart>();
 
     private void OnEnable() {
@@ -18,8 +20,16 @@ public class HeartBar : MonoBehaviour
     }
 
     private void Start() {
+         previousHealth = player.health;
         drawHearts();
     }
+
+    private void Update() {
+    if (player.health != previousHealth) {
+        drawHearts();  // Update hearts if health changes
+        previousHealth = player.health;  // Update the stored health
+    }
+}
 
     public void ClearHearts() {
         foreach (Transform t in transform) {

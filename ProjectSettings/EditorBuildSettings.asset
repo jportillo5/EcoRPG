@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Title Sequence Animation.unity
+    guid: 7f1ec8bf782ab48229e2fda7c64f1b81
+  - enabled: 1
+    path: Assets/Scenes/Title Screen.unity
+    guid: 7f153e0edfc9144128f8004473feefe7
+  - enabled: 1
+    path: Assets/Scenes/Opening Story Cutscene.unity
+    guid: 3eb03fd724e250f4fb73e17893c2bd9f
+  - enabled: 1
     path: Assets/Scenes/FarmScene.unity
     guid: b0f29ac2072aa064b9c1658378d411d5
   - enabled: 1
@@ -14,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ForestShrine.unity
     guid: 0ffe9fd786423fd4eaa09d6b90ab689e
+  - enabled: 1
+    path: Assets/Scenes/DeathScene.unity
+    guid: 42a8a4981633ab048a1f0b346457ab64
   m_configObjects: {}
