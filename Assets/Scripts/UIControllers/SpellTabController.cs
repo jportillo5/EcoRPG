@@ -9,10 +9,12 @@ using UnityEngine.UI;
 public class SpellTabController : MonoBehaviour
 {
     public float stickSens;
+    public List<Color> panelColors;
     
     Text spellDescription;
     Text spellTitle;
     List<Text> spellTexts;
+    List<Image> spellPanels;
     Image spellImage;
     List<Spell> spells;
 
@@ -50,6 +52,12 @@ public class SpellTabController : MonoBehaviour
         spellTexts.Add(GameObject.Find("SpellText1").GetComponent<Text>());
         spellTexts.Add(GameObject.Find("SpellText2").GetComponent<Text>());
         spellTexts.Add(GameObject.Find("SpellText3").GetComponent<Text>());
+
+        spellPanels = new List<Image>();
+        spellPanels.Add(GameObject.Find("SPanel1").GetComponent<Image>());
+        spellPanels.Add(GameObject.Find("SPanel2").GetComponent<Image>());
+        spellPanels.Add(GameObject.Find("SPanel3").GetComponent<Image>());
+        spellPanels.Add(GameObject.Find("SPanel4").GetComponent<Image>());
 
         SubMenu1 = GameObject.Find("SpellSubMenu1");
         SubMenu2 = GameObject.Find("SpellSubMenu2");
@@ -184,6 +192,7 @@ public class SpellTabController : MonoBehaviour
                 case "sub1":
                     switch(subHoverX) {
                         case 0: //add to quickbinds
+                            pmc.playConfirmClip();
                             subMenu = "sub2";
                             //disable submenu 1
                             //SubMenu1.SetActive(false);
@@ -193,6 +202,7 @@ public class SpellTabController : MonoBehaviour
                             setSubMenu2Text();
                             break;
                         case 1: //same as return
+                            pmc.playConfirmClip();
                             subMenu = "none";
                             inputsLocked = false;
                             subHoverX = 0;
@@ -202,6 +212,7 @@ public class SpellTabController : MonoBehaviour
                     }
                 break;
                 case "sub2": //add quickbind
+                    pmc.playConfirmClip();
                     GameObject.Find("Inventory").GetComponent<QuickBinds>().setBind(subHoverX, spells[hoverY - 1].gameObject);
                     subMenu = "none";
                     inputsLocked = false;
@@ -227,6 +238,7 @@ public class SpellTabController : MonoBehaviour
                 }
                 break;
             case "sub1": //use, add to quickbinds, back. currently no need to mess with quick access items
+                pmc.playReturnClip();
                 subMenu = "none";
                 inputsLocked = false;
                 subHoverX = 0;
@@ -234,6 +246,7 @@ public class SpellTabController : MonoBehaviour
                 SubMenu1.SetActive(false);
                 break;
             case "sub2": //quickbinds slot 1, 2, 3, 4
+                pmc.playReturnClip();
                 subMenu = "sub1";
                 subHoverX = 0;
                 //disable this submenu
@@ -260,7 +273,9 @@ public class SpellTabController : MonoBehaviour
         for(int i = 0; i < spellTexts.Count; i++) {
             spellTexts[i].text = "";
             if(hoverY - 1 == i) {
-                spellTexts[i].text += "> ";
+                spellPanels[i].color = panelColors[1];
+            } else {
+                spellPanels[i].color = panelColors[0];
             }
             spellTexts[i].text += spells[i].getName();
         }

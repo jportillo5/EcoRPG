@@ -105,6 +105,8 @@ public class StatusTabController : MonoBehaviour
                 hoverY = 2;
             } else if(hoverY< 0) {
                 hoverY = 0;
+            } else if (Math.Abs(v) > stickSens){
+                pmc.playNavClip();
             }
 
             if(h > stickSens) {
@@ -114,6 +116,7 @@ public class StatusTabController : MonoBehaviour
             }
 
             if(hoverY == 0) { //tabs
+                pmc.playNavClip();
                 if(hoverX < 0) {
                     hoverX = 3;
                 } else if(hoverX > 3) {
@@ -125,6 +128,8 @@ public class StatusTabController : MonoBehaviour
                     hoverX = 1;
                 } else if(hoverX < 0) {
                     hoverX = 0;
+                } else if(Math.Abs(h) > stickSens) {
+                    pmc.playNavClip();
                 }
                 togglePanel();
             }
@@ -137,6 +142,7 @@ public class StatusTabController : MonoBehaviour
     void OnUIConfirm() {
         if(!inputsLocked) {
             if(hoverY == 0) {
+                pmc.playConfirmClip();
                 inputsLocked = true;
                 switch(hoverX) {
                     case 0: //current tab
@@ -173,6 +179,7 @@ public class StatusTabController : MonoBehaviour
                 pmc.enableTab("return");
                 break;
             default: //any other spot on the menu
+                pmc.playReturnClip();
                 hoverY = 0;
                 hoverX = 0;
                 break;    
