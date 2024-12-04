@@ -13,14 +13,18 @@ public class Player : MonoBehaviour
     public float maxMP;
     public float mpRecoveryRate; //amount of MP meant to be recovered in one second
     float currentMP;
+    public int restarted;
 
     private MPBarController mpBar;
+    LevelLoader ll;
+    
 
     void Start() {
         health = maxHealth;
         Debug.Log("Player starts with " + health + " health.");
         currentMP = maxMP;
         mpBar = GameObject.Find("MPBar").GetComponent<MPBarController>();
+        ll = FindObjectOfType<LevelLoader>();
     }
     
 
@@ -32,16 +36,21 @@ public class Player : MonoBehaviour
 
         if (health <= 0)
         {
-            Die();
-            Destroy(gameObject);
+            ll = FindObjectOfType<LevelLoader>();
+            //Die();
+            ll.LoadNextLevel(true);
+            //Destroy(gameObject);
+            
             //Debug.Log("Player has died.");
-            Debug.Log("Player took " + damage + " damage. Current health: " + health);
+            //Debug.Log("Player took " + damage + " damage. Current health: " + health);
         }
     }
 
     void Die()
     {
+        
         Destroy(gameObject);
+        
         //Debug.Log("Player has died.");
         //Debug.Log("Player took " + damage + " damage. Current health: " + health);
         //OnPlayerDeath?.Invoke();
@@ -99,5 +108,9 @@ public class Player : MonoBehaviour
             float rate = 1f/60f;
             Invoke("autoRecoverMP", rate); //setup needs to be reworked for a smoother transition on the MP recovery
         }
+    }
+
+    public void Reset(){
+        Start();
     }
 }

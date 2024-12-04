@@ -7,6 +7,8 @@ public class SceneTransitionManager : MonoBehaviour
     public Vector2 entryPoint; // Position to place the player in the next scene
     LevelLoader ll;
 
+    
+
     // Trigger for entering a new scene
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -18,7 +20,7 @@ public class SceneTransitionManager : MonoBehaviour
 
             // Load the new scene
             //SceneManager.LoadScene(sceneToLoad);
-            ll.LoadNextLevel();
+            ll.LoadNextLevel(false);
 
         }
     }
